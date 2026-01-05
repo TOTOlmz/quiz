@@ -8,5 +8,5 @@ les utilisateurs peuvent en créer <br>
 l'administrateur peut en créer et suspendre des joueurs si leurs quizzes sont problématiques (possibilité de signaler un joueur) <br>
 
 ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ <br>
-Tournant en PHP et JS <br>
+Développé en PHP et JS <br>
 ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ <br>
