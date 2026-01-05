@@ -19,6 +19,7 @@ use App\Controllers\HomeController;
 use App\Controllers\ConnectionController;
 use App\Controllers\RegistrationController;
 use App\Controllers\QuizController;
+use App\Controllers\AdminController;
 
 
 // Instanciation des contrôleurs
@@ -27,6 +28,7 @@ $home = new HomeController();
 $connectionController = new ConnectionController();
 $registrationController = new RegistrationController();
 $quizController = new QuizController();
+$adminController = new AdminController();
 
 
     
@@ -50,9 +52,6 @@ $uri = '/'.ltrim($uri, '/'); // garantit un slash initial
     <title>Ecoride</title>
 </head>
 <body>
-    <pre>
-    <?php print_r($_SESSION); ?>
-    </pre>
     <?php $header->header(); ?>
 
     <div class="main">
@@ -62,14 +61,18 @@ $uri = '/'.ltrim($uri, '/'); // garantit un slash initial
             else if (strpos($uri, '/deconnexion') === 0) { $connectionController->logout(); }
             else if (strpos($uri, '/inscription') === 0) { $registrationController->registration(); }
 
+
+            else if (strpos($uri, '/espace-admin') === 0) { $adminController->adminArea(); }
+
             else if (strpos($uri, '/creer-un-quiz') === 0) { $quizController->quizArea(); }
 
             else { echo '<h1 style="margin:15px;">404 - Page non trouvée</h1>'; }
         ?>
     </div>
+
     <?php
         // Ajout du footer
-        // require __DIR__ . '/../src/Views/components/footer.php';
+        require __DIR__ . '/../src/Views/components/footer.php';
     ?>
 </body>
 </html>

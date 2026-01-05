@@ -1,7 +1,6 @@
 <nav class="navbar">
     <a href="./" class="brand-area">
-        <img src="./assets/images/logo.webp" alt="Logo" class="navbar-logo">
-        <p>Ze Quiz</p>
+        <img src="./../public/assets/images/logo.png" alt="Logo ze quiz" class="navbar-logo">
     </a>
 
     <!-- <button class="mobile-burger" id="mobile-burger">
@@ -14,18 +13,24 @@
     <div class="links-area" id="navbar-menu">
         <?php if ($connected): ?>
             <?php if ($admin): ?>
-                <a class="nav-btn" href="./creer-un-quiz">Ajouter un quiz</a>
-                <a class="nav-btn" href="./quizzes-signales">Quizzes signalés</a>
-                <a class="nav-btn" href="./deconnexion">Déconnexion</a>
+                <div>
+                    <a class="button nav-btn" href="./espace-admin">Espace admin</a>
+                </div>
+                <div>
+                    <a class="button nav-btn" href="./deconnexion">Déconnexion</a>
+                </div>
             <?php else: ?>
-                <a class="nav-btn" href="./creer-un-quiz">Créer un quiz</a>
-                <a class="nav-btn" href="./mes-quizzes">Mes quizzes</a>
-                <a class="nav-btn" href="./deconnexion">Déconnexion</a>
+                <div>
+                    <a class="button nav-btn" href="./mon-espace">Mon espace</a>
+                </div>
+                <div>
+                    <a class="button nav-btn" href="./deconnexion">Déconnexion</a>
+                </div>
             <?php endif; ?>
         <?php else: ?>
-            <a class="nav-btn" href="./creer-un-quiz">Quiz aléatoire</a>
-            <a class="nav-btn" href="./quizzes-par-categories">Quizzes par catégories</a>
-            <a class="nav-btn" href="./connexion">Connexion</a>
+            <div>
+                <a class="button nav-btn" href="./connexion">Connexion</a>
+            </div>
         <?php endif; ?>
     </div>
 </nav>

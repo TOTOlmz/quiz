@@ -1,34 +1,27 @@
 
-<div class="form-container">
+<div class="connection">
     <h2>Créer un compte</h2>
-    <form method="post" action="">
-        <div class="form-group">
-            <input type="text" id="pseudo" name="pseudo" placeholder="Pseudo" required>
-        </div>
-        <div class="form-group">
-            <input type="email" id="email" name="email" placeholder="email" required>
-        </div>
-        <div class="form-group">
-            <input type="password" id="password" name="password" placeholder="mot de passe" required>
-        </div>
-        <div class="form-group">
-            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmation du mot de passe" required>
-        </div>
-        <button type="submit" disabled>S'inscrire</button>        
+    <form class="connection-form" method="post" action="">
+        <input type="text" id="pseudo" name="pseudo" placeholder="Pseudo" required>
+        <input type="email" id="email" name="email" placeholder="email" required>
+        <input type="password" id="password" name="password" placeholder="mot de passe" required>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmation du mot de passe" required>
+        <button type="submit" id="submit-button">S'inscrire</button>
+        <div class="password-requirements">
+            <p> Le mot de passe doit contenir au moins :</p>
+            <span class="pass pass1 pass-length">8 caractères</span>
+            <span class="pass pass1 pass-upper">Une majuscule</span>
+            <span class="pass pass1 pass-lower">Une minuscule</span>
+            <span class="pass pass1 pass-number">Un chiffre</span>
+            <span id="passconf-label" class="pass">Les mots de passe ne correspondent pas.</span>
+        </div>        
     </form>
     <div>
         <p> Déjà un compte ? <a href="./connexion">cliquez ici</a></p>
     </div>
 </div>
 <div class="form-container">
-    <div class="password-requirements">
-        <p> Le mot de passe doit contenir au moins :</p>
-        <span class="pass pass-length">8 caractères</span>
-        <span class="pass pass-upper">Une majuscule</span>
-        <span class="pass pass-lower">Une minuscule</span>
-        <span class="pass pass-number">Un chiffre</span>
-        <p id="passconf-label">Les mots de passe ne correspondent pas.</p>
-    </div>
+    
     
     <?php require_once __DIR__ . '/components/checks.php' ?>
 
@@ -37,12 +30,10 @@
 <script>
     // Validation du mot de passe côté client
     const form = document.querySelector('form');
+    form.querySelector('#submit-button').style.display = 'none';
     const password = document.getElementById('password');
     const passwordConfirm = document.getElementById('confirm-password');
 
-    // Au chargement on cache les infos de validation
-    document.querySelector('.password-requirements').style.display = 'none'; 
-    document.querySelector('#passconf-label').style.display = 'none'; 
 
     document.querySelectorAll('.pass').forEach(item => {
         item.style.padding = '0.2rem 0.5rem';
@@ -52,16 +43,20 @@
         item.style.backgroundColor = '#a10000';
         item.style.display = 'inline-block';
     });
+    
+    document.querySelector('#passconf-label').style.display = 'none'; 
 
     password.addEventListener('input', checkForm);
     passwordConfirm.addEventListener('input', checkForm);
 
     function checkForm() {
         if (validatePassword()) {
+            document.querySelector('.password-requirements p').innerHTML = 'Le mot de passe est robuste.';
+            document.querySelectorAll('.password-requirements .pass1').forEach(item => item.style.display = 'none');
             let confirmP = password.value === passwordConfirm.value;
-            form.querySelector('button').disabled = confirmP ? false : true;
+            form.querySelector('#submit-button').style.display = confirmP ? 'block' : 'none';
             document.querySelector('#passconf-label').style.display = 'block';
-            document.querySelector('#passconf-label').style.color = confirmP ? '#196e44' : '#a10000';    
+            document.querySelector('#passconf-label').style.backgroundColor = confirmP ? '#196e44' : '#a10000';    
             document.querySelector('#passconf-label').textContent = confirmP ? 'Les mots de passe correspondent.' : 'Les mots de passe ne correspondent pas.'; 
 
         } 
@@ -80,4 +75,11 @@
         document.querySelector('.pass-number').style.backgroundColor = validNumber ? '#196e44' : '#a10000';
         return validLength && validUpper && validLower && validNumber;
     };
+</script>
+
+<script>
+    // Script simple pour ajuster la largueur d'un bouton en fonction des inputs
+    let button = document.querySelector('.connection-form button[type="submit"]');
+    let input = document.querySelector('.connection-form input');
+    button.style.width = input.offsetWidth + 'px';
 </script>

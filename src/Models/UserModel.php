@@ -29,7 +29,7 @@ class UserModel extends BaseModel {
 
     public static function createUser(string $pseudo, string $email, string $password, string $role): ?int {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-        $sql = 'INSERT INTO users (pseudo, email, password, role) VALUES (:pseudo, :email, :password, :role)';
+        $sql = 'INSERT INTO users (pseudo, email, password, role, created_at) VALUES (:pseudo, :email, :password, :role, NOW())';
         $params = [
             'pseudo' => $pseudo,
             'email' => $email,

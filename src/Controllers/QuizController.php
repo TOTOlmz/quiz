@@ -10,9 +10,23 @@ class QuizController extends BaseController {
 
     protected array $errors = [];
     protected string $success = '';
+    protected array $currentQuiz = [];
     protected int $nbOfQuestions = 0;
 
-    public function quizArea() {
+    public function QuizArea() {
+
+        if (isset($_GET['id'])) {
+            $intId = intval($_GET['id']);
+            $getQuiz = QuizModel::getQuizById($intId);
+    
+            if ($getQuiz) {
+                $this->currentQuiz = $getQuiz;
+                $this->currentQuiz['questions'] = QuizModel::getQuestionsByQuizId($intId);
+                $this->nbOfQuestions = count($this->currentQuiz['questions']);
+            } else {
+                $this->errors[] = 'Quiz introuvable';
+            }
+        }
 
         if (isset($_POST['create_quiz'])) {
             $this->createQuiz($_POST);
@@ -23,6 +37,8 @@ class QuizController extends BaseController {
             $this->createQuestion($_POST);
         }
 
+        // Appel de la vue
+        $quiz = $this->currentQuiz;
         require_once __DIR__ . '/../Views/creatingQuizView.php';
     }
 
@@ -55,9 +71,9 @@ class QuizController extends BaseController {
 
     public function createQuestion($data) {
 
-        $quizId = (int) $data['quiz_id'];
+        $quizId = intval($data['quiz_id']);
         $question = trim($data['question']);
-        $nbOfQuestions = 4;
+        $nbOfQuestions = 0;
         $answerA = trim($data['answer_A']);
         $answerB = trim($data['answer_B']);
         $answerC = trim($data['answer_C']);

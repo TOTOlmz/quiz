@@ -1,15 +1,20 @@
 <div>
     <?php require_once __DIR__ . '/components/checks.php'; ?>
-    <form class="connection" method="POST">
-        <h2>Connexion</h2>
-        <label for="email">Adresse e-mail :
-        <input type="email" id="email" name="email" required></label>
 
-        <label for="password">Mot de passe :
-        <input type="password" id="password" name="password" required></label>
+    <div class="connection">
+        <form class="connection-form" method="POST">
+            <h2>Connexion</h2>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <input type="password" id="password" name="password" placeholder="Mot de passe" required>
 
-        <button type="submit">Se connecter</button>
-    </form>
-    <p>Pas encore de compte ? <a href="./inscription">Inscrivez-vous ici</a></p>
+            <button type="submit">Se connecter</button>
+        </form>
+        <p>Pas encore de compte ? <a href="./inscription">Inscrivez-vous ici</a></p>
+    </div>
 
 </div>
+<script>
+    let button = document.querySelector('.connection-form button[type="submit"]');
+    let input = document.querySelector('.connection-form input');
+    button.style.width = input.offsetWidth + 'px';
+</script>
