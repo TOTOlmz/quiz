@@ -23,10 +23,22 @@ class QuizModel extends BaseModel {
         return $stmt ?: null;
     }
 
+    public static function getAllQuizzes(): ?array {
+        $sql = "SELECT * FROM quizzes";
+        $stmt = self::fetchAll($sql);
+        return $stmt ?: null;
+    }
+
+    public static function getUserPictureFromQuiz(int $quizId): ?string {
+        $sql = "SELECT picture FROM users WHERE id = (SELECT user_id FROM quizzes WHERE id = :quizId)";
+        $stmt = self::fetchOne($sql, ['quizId' => $quizId]);
+        return $stmt['picture'] ?? null;
+    }
+
 
 
     public static function createQuiz(array $params): ?int {
-        $sql = "INSERT INTO quizzes (name, description, user_id, created_at) VALUES (:name, :description, :user_id, NOW())";
+        $sql = "INSERT INTO quizzes (name, description, color, user_id, created_at) VALUES (:name, :description, :color, :user_id, NOW())";
         $stmt = self::lastInsert($sql, $params);
         return $stmt ?: null;
     }
@@ -39,9 +51,15 @@ class QuizModel extends BaseModel {
 
     
     public static function createQuestion(array $params): ?int {
-        $sql = "INSERT INTO questions (quiz_id, question, nb_of_answers, answer_A, answer_B, answer_C, answer_D) 
-                VALUES (:quiz_id, :question, :nb_of_answers, :answer_A, :answer_B, :answer_C, :answer_D)";
+        $sql = "INSERT INTO questions (quiz_id, question, nb_of_answers, correct_answer, answer_A, answer_B, answer_C, answer_D) 
+                VALUES (:quiz_id, :question, :nb_of_answers, :correct_answer, :answer_A, :answer_B, :answer_C, :answer_D)";
         $stmt = self::lastInsert($sql, $params);
         return $stmt ?: null;
+    }
+
+    public static function updatePlayed($quizId): ?int {
+        $sql = "UPDATE quizzes SET played_nb = played_nb + 1 WHERE id = :id LIMIT 1";
+        $stmt = self::executeQuery($sql, ['id' => $quizId]);
+        return $stmt->rowCount() > 0 ? $stmt->rowCount() : null;
     }
 }

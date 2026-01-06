@@ -29,7 +29,7 @@ class UserModel extends BaseModel {
 
     public static function createUser(string $pseudo, string $email, string $password, string $role): ?int {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-        $sql = 'INSERT INTO users (pseudo, email, password, role, created_at) VALUES (:pseudo, :email, :password, :role, NOW())';
+        $sql = 'INSERT INTO users (pseudo, email, password, picture, role, created_at) VALUES (:pseudo, :email, :password, "default.png", :role, NOW())';
         $params = [
             'pseudo' => $pseudo,
             'email' => $email,
@@ -38,5 +38,17 @@ class UserModel extends BaseModel {
         ];
         $userId = self::lastInsert($sql, $params);
         return $userId ? (int)$userId : null;
+    }
+
+    public static function setUserPicture(int $userId, string $picture): ?string {
+        $sql = "UPDATE users SET picture = :picture WHERE id = :id LIMIT 1";
+        $updated = self::executeQuery($sql, ['picture' => $picture, 'id' => $userId])->rowCount();
+        return $updated > 0 ? $picture : null;
+    }
+
+    public static function updateScore(int $score, int $userId): ?int {
+        $sql = "UPDATE users SET score = score  + :score WHERE id = :user_id LIMIT 1";
+        $stmt = self::executeQuery($sql, ['score' => $score, 'user_id' => $userId]);
+        return $stmt->rowCount() > 0 ? $stmt->rowCount() : null;
     }
 }

@@ -2,8 +2,10 @@
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
     Controlleur gérant la page d'administration
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
+use App\Controllers\BaseController;
+use App\Controllers\AccessController;
 use App\Models\AdminModel;
 
 class AdminController extends BaseController {
@@ -17,6 +19,10 @@ class AdminController extends BaseController {
 
     public function adminArea() {
 
+        // Vérification des accès
+        $accessController = new AccessController();
+        $accessController->checkAccess('ADMIN');
+
         $this->currentReports = AdminModel::getReports();
         $this->nbOfQuizzes = AdminModel::getNumberOfQuizzes();
         $this->nbOfPlayers = AdminModel::getNumberOfPlayers();
@@ -27,7 +33,7 @@ class AdminController extends BaseController {
         $nbQuizzes = $this->nbOfQuizzes;
         $nbPlayers = $this->nbOfPlayers;
         // Appel de la vue
-        require_once __DIR__ . '/../Views/adminView.php';
+        require_once __DIR__ . '/../../Views/adminView.php';
     }
 
 }

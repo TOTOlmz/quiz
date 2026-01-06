@@ -1,0 +1,33 @@
+div.quiz-area{
+    background-color: var(--blue);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    text-align: center;
+    border-radius: 15px;
+}
+
+div.quiz-area div.question-area {
+    font-size: larger;
+}
+
+div.quiz-area div.answers-area {
+    width: 100%;
+}
+
+div.quiz-area div.answers-area div.line {
+    width: 100%;
+    display: inline-flex;
+}
+
+div.quiz-area div.answers-area div.line div.answer {
+    margin: 20px;
+    width: 50%;
+    background-color: var(--white);
+    font-size: larger;
+    border: solid 1px var(--purple);
+    border-radius: 10px;
+    box-shadow: 5px 0 0 var(--purple);
+}

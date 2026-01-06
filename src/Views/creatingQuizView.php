@@ -1,41 +1,56 @@
-<?php require_once __DIR__ . '/components/checks.php'; ?>
 
-<div class="quiz-creation">
-    <h2>Créer un nouveau quiz</h2>
-    <form action="" method="POST" class="quiz-creation-form">
-        <label for="name">Nom du quiz :</label>
-        <input type="text" id="name" name="name" required>
 
-        <label for="description">Description du quiz :</label>
-        <textarea id="description" name="description"></textarea>
+<div class="centered-div">
+    <?php require_once __DIR__ . '/components/checks.php'; ?>
+    <div class="quiz-creation">
+        <h2>Créer un nouveau quiz</h2>
+        <form action="" method="POST" class="quiz-creation-form">
+            <label for="name">Nom du quiz :</label>
+            <input type="text" id="name" name="name" required>
 
-        <button type="submit" name="create_quiz">Créer le quiz</button>
-    </form>
-</div>
+            <label for="description">Description du quiz :</label>
+            <textarea id="description" name="description"></textarea>
 
-<div class="question-creation">
+            <label for="color">Couleur du quiz :</label>
+            <input type="color" id="color" name="color" value="#ffff00" required>
 
-    <h2><?=  isset($quiz['id']) ? "Quiz sur le theme : {$quiz['name']}" : ''; ?> (<?=  isset($quiz['questions']) ? count($quiz['questions']) : ''; ?> questions)</h2>
+            <button type="submit" name="create_quiz">Créer le quiz</button>
+        </form>
+    </div>
 
-    <form action="" method="POST" class="question-creation-form">
-        <label for="question">Question :</label>
-        <textarea id="question" name="question" required></textarea>
-        <br>
+    <div class="question-creation">
 
-        <label for="answer_A">Réponse A :</label>
-        <input type="text" id="answer_A" name="answer_A">
+        <h2><?=  isset($quiz['id']) ? "Quiz sur le theme : {$quiz['name']}" : ''; ?> (<?=  isset($quiz['questions']) ? count($quiz['questions']) : ''; ?> questions)</h2>
 
-        <label for="answer_B">Réponse B :</label>
-        <input type="text" id="answer_B" name="answer_B">
+        <form action="" method="POST" class="question-creation-form">
+            <label for="question">Question :</label>
+            <textarea id="question" name="question" required></textarea>
+            <br>
 
-        <label for="answer_C">Réponse C :</label>
-        <input type="text" id="answer_C" name="answer_C">
+            <label for="answer_A">Réponse A :</label>
+            <input type="text" id="answer_A" name="answer_A">
 
-        <label for="answer_D">Réponse D :</label>
-        <input type="text" id="answer_D" name="answer_D">
-        <br>
-        <button type="submit" name="create_question">Créer la question</button>
-    </form>
+            <label for="answer_B">Réponse B :</label>
+            <input type="text" id="answer_B" name="answer_B">
+
+            <label for="answer_C">Réponse C :</label>
+            <input type="text" id="answer_C" name="answer_C">
+
+            <label for="answer_D">Réponse D :</label>
+            <input type="text" id="answer_D" name="answer_D">
+            <br>
+
+            <label for="correct_answer">Réponse correcte :</label>
+            <select id="correct_answer" name="correct_answer" required>
+                <option value="A">Réponse A</option>
+                <option value="B">Réponse B</option>
+                <option value="C">Réponse C</option>
+                <option value="D">Réponse D</option>
+            </select>
+
+            <button type="submit" name="create_question">Créer la question</button>
+        </form>
+    </div>
 </div>
 
 
@@ -45,11 +60,6 @@
 
     let quiz = <?=  isset($quiz['id']) ? json_encode($quiz['id']) : 'null'; ?>;
 
-    // Pour tests :
-    let quizArray = <?=  isset($quiz['id']) ? json_encode($quiz) : 'null'; ?>;
-    console.log('Quiz Array:', quizArray);
-    console.log('Quiz ID:', quiz);
-    // Fin de tests
 
     function toggleForms() {
         if (quiz !== null) {

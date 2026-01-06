@@ -1,92 +1,3 @@
-:root {
-    /* Couleurs */
-    --white: #ffffff;
-    --green: #CAFFD0;
-    --blue: #C9E4E7;
-    --lila: #B4A0E5;
-    --purple: #CA3CFF;
-    --black: #1E1014;
-
-    /* Polices d'écritures */
-    --first-font: montserrat;
-    --font-color-white: #fff;
-    --font-color-black: #1E1014;
-    --font-color-success: #006900;
-    --font-color-error: #9B1C18;
-
-}
-
-
-body {
-    background-color: var(--green);
-    font-family: var(--first-font), Arial, Helvetica;
-    width: 100vw;
-    min-height: 100vh;
-    margin: 0;
-    padding:0;
-    display: flex;
-    flex-direction: column;
-}
-
-.main {
-    flex: 1; /* Prend tout l'espace disponible */
-    padding-bottom: 20px;
-}
-
-.navbar{
-    background-color: var(--lila);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    > a{
-        text-decoration: none;
-        color: var(--font-color-black);
-    }
-}
-.navbar-logo{
-    height: 50px;
-    width: auto;
-    padding: 10px;
-}
-
-.links-area > div {
-    display: inline-flex;
-    align-items: center;
-}
-
-footer {
-        background-color: var(--purple);
-        color: #fff;
-        text-align: center;
-        padding: 15px 0;
-        height: 20px;
-        width: 100%;
-        font-family: Arial, sans-serif;
-        margin-top: auto;
-        a {
-            color: var(--font-color-white);
-            text-decoration: none;
-        }
-}
-
-.button {
-    background-color: var(--white);
-    color: var(--font-color-black);
-    border: none;
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 5px;
-    border: solid 1px var(--purple);
-    text-decoration: none;
-    box-shadow: 5px 0 0 var(--purple);
-    transition: all 0.5s;
-}
-.button:hover {
-    margin-right: 5px;
-    border: solid 1px var(--black);
-    box-shadow: inset 5px 0 0 var(--black);
-}
-
 .connection {
     background-color: var(--blue);
     width: 300px;
@@ -102,7 +13,6 @@ footer {
 }
 
 .connection input, .connection button {
-    
     padding: 10px;
     width: 90%;
     border-radius: 10px;
@@ -110,16 +20,113 @@ footer {
     margin: 2px;
 }
 
-.centered-div {
-    background-color: var(--blue);
-    width: 300px;
-    margin: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+form.picture-form { 
+    position: relative; 
+    height: 50px; 
+    width: 50px; 
+    border: solid 2px var(--purple); 
+    border-radius: 50%; 
+    overflow: hidden;
+}
+img#user-picture { width: 100%;}
+input#picture-input {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    opacity: 0; 
+    cursor: pointer;
+}
+span#picture-label {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center; 
+    color: var(--font-color-white); 
+    background: var(--black); 
+    opacity: 0; 
+    transition: opacity 0.2s; 
+    pointer-events: none;
+    font-size: 35px;
+}
+
+div.userspace-section {
+    border-radius: 15px;
+    padding: 15px;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+div.profile-section { max-width: fit-content; }
+div.user-infos { margin-left: 20px; }
+
+div.quiz-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+div.quiz-list a.quiz-a {
+    text-decoration: none;
+    color: var(--font-color-black);
+    margin: 10px;
+}
+div.quiz-list div.quiz-div {
+    border: solid 2px;
     border-radius: 10px;
-    padding : 20px;
-    border: solid 1px var(--purple);
-    box-shadow: -5px 0 0 var(--purple);
+    padding: 10px;
+}
+
+div.quizzes-cards {
+    background-color: var(--white);
+    width: 100%;
+    display: block ruby;
+    overflow-y: auto;
+    justify-content: center;
+}
+div.quiz-card {
+    position: relative;
+    width: 300px;
+    background-color: var(--white);
+    border: solid 2px;
+    padding: 10px;
+    margin: 20px;
+    overflow: hidden;
+}
+div.quiz-card h4, div.quiz-card p {
+    margin: 5px;
+
+}
+
+img.quiz-creator-picture {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    height: 40px;
+    width: 40px;
+    border: solid 1px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+div.action-area { 
+    text-align: center; 
+    display: flex; 
+    flex-wrap: wrap;
+    margin: 10px auto;
+}
+
+div.action-area > div {
+    width: 300px;
+    margin: 20px auto;
+    text-align: right;
 }

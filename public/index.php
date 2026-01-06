@@ -18,17 +18,25 @@ use App\Controllers\HeaderController;
 use App\Controllers\HomeController;
 use App\Controllers\ConnectionController;
 use App\Controllers\RegistrationController;
+
+use App\Controllers\CreatingQuizController;
 use App\Controllers\QuizController;
-use App\Controllers\AdminController;
+
+use App\Controllers\Admin\AdminController;
+use App\Controllers\Users\UserSpaceController;
 
 
 // Instanciation des contrôleurs
 $header = new HeaderController();
 $home = new HomeController();
 $connectionController = new ConnectionController();
+
 $registrationController = new RegistrationController();
+$creatingQuizController = new CreatingQuizController();
 $quizController = new QuizController();
+
 $adminController = new AdminController();
+$userSpaceController = new UserSpaceController();
 
 
     
@@ -48,8 +56,10 @@ $uri = '/'.ltrim($uri, '/'); // garantit un slash initial
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/mainStyle.css">
     <link rel="stylesheet" href="./assets/style.css">
-    <title>Ecoride</title>
+    <link rel="stylesheet" href="./assets/quizzesStyle.css">
+    <title>Ze Quiz</title>
 </head>
 <body>
     <?php $header->header(); ?>
@@ -63,8 +73,13 @@ $uri = '/'.ltrim($uri, '/'); // garantit un slash initial
 
 
             else if (strpos($uri, '/espace-admin') === 0) { $adminController->adminArea(); }
+            else if (strpos($uri, '/mon-espace') === 0) { $userSpaceController->userSpace(); }
 
-            else if (strpos($uri, '/creer-un-quiz') === 0) { $quizController->quizArea(); }
+            else if (strpos($uri, '/creer-un-quiz') === 0) { $creatingQuizController->creatingQuizArea(); }
+            else if (strpos($uri, '/quiz') === 0) { $quizController->quizArea(); }
+
+
+            else if (strpos($uri, '/legal') === 0) { require_once __DIR__ . '/../src/Views/legalView.php'; }
 
             else { echo '<h1 style="margin:15px;">404 - Page non trouvée</h1>'; }
         ?>
