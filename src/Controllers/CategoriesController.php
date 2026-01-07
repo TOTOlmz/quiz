@@ -11,18 +11,34 @@ class CategoriesController extends BaseController {
 
     protected array $errors = [];
     protected string $success = '';
-    protected int $nbOfQuestions = 0;
-    protected array $currentQuiz = [];
+    protected array $categories = [];
+    protected array $quizzes = [];
 
     public function categoriesArea() {
 
         // on récupère un tableau contenant les catégories présentes dans la BDD
-        $categories = QuizModel::getAllCategories('quizzes', 'category');
-        print_r($categories);
+        $this->categories = QuizModel::getAllCategories('quizzes', 'category');
+
+
+        // Si une catégorie est choisie, on récupère tous ses quizzes pour les afficher
+        if (isset($_POST['category'])) {
+            $category = htmlspecialchars($_POST['category']);
+            $this->quizzes = QuizModel::getQuizzesByCategory($category);
+
+            if (empty($this->errors)) {
+                foreach ($this->quizzes as &$quiz) {
+                    $quiz['picture'] = QuizModel::getUserPictureFromQuiz((int)$quiz['id']);
+                }
+            }
+        }
+
+        
 
         // on simplifie les variables pour la vue
         $errors = $this->errors;
         $success = $this->success;
+        $categories = $this->categories;
+        $quizzes = $this->quizzes;
         // Appel de la vue
         require_once __DIR__ . '/../views/categoriesView.php';
     }

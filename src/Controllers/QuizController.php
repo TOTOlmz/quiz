@@ -38,25 +38,30 @@ class QuizController extends BaseController {
             // Traitement de la soumission du score
             $data = json_decode(file_get_contents('php://input'), true);
             $userId = isset($data['user']) ? intval($data['user']) : 0;
-            $score = isset($data['score']) ? intval($data['score']) : 0;
+            $quizId = intval($data['quiz']);
+            $score = intval($data['score']);
 
-            
-            $userScore = UserModel::updateScore([
-                'score' => $score,
-                'user_id' => $userId
-            ]);
-
-            if (!$userScore) {
-                $this->errors[] = 'Erreur lors de la mise à jour du score.';
-            } else {
-                $this->success = 'Score mis à jour avec succès.';
+            if ($userId > 0) {
+                $userScore = UserModel::updateScore($score, $userId);
+                if (!$userScore) {
+                    $this->errors[] = 'Erreur lors de la mise à jour du score.';
+                } else {
+                    $this->success = 'Score mis à jour avec succès.';
+                }
             }
 
-            header('Content-Type: application/json');
-            echo json_encode(['success' => $this->success, 'errors' => $this->errors]);
+            $quizPlayed = QuizModel::updatePlayed($quizId);
             
+            
+
+            header('Content-Type: application/json');
+            echo json_encode([
+                'success' => $this->success, 
+                'errors' => $this->errors
+            ]);
+            /* (!A FAIRE!) gérer l'erreur (non bloquante) du json invalide */
             exit;
-        };
+        }
 
 
         // Appel de la vue
