@@ -7,14 +7,16 @@
             <input type="email" id="email" name="email" placeholder="Email" required>
             <input type="password" id="password" name="password" placeholder="Mot de passe" required>
 
-            <button type="submit">Se connecter</button>
+            <button type="submit" class="button">Se connecter</button>
         </form>
         <p>Pas encore de compte ? <a href="./inscription">Inscrivez-vous ici</a></p>
     </div>
 
 </div>
+
 <script>
     let button = document.querySelector('.connection-form button[type="submit"]');
     let input = document.querySelector('.connection-form input');
-    button.style.width = input.offsetWidth + 'px';
+    button.style.width = input.offsetWidth - 10 + 'px';
+    button.style.textAlign = 'center';
 </script>

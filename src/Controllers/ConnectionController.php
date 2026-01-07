@@ -42,7 +42,7 @@ class ConnectionController {
                     if ($user['roles'] === 'ADMIN') {
                         header ('Location: ./admin');
                     } else {
-                        header ('Location: ./');
+                        header ('Location: ./mon-espace');
                     }
                     $success = 'connexion réussie';
                     return $success;

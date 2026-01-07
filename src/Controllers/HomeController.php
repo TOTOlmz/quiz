@@ -32,17 +32,25 @@ class HomeController {
             }
         }
 
+        // On trie les quizzes par popularité (nombre de fois joués)
+        $popularQuizzes = $this->quizzes;
+        usort($popularQuizzes, function($a, $b) { 
+            return $b['played_nb'] - $a['played_nb']; 
+        });
+        $popularQuizzes = array_slice($popularQuizzes, 0, 5);
 
         // On trie les quizzes du plus récent au plus ancien
         $recentQuizzes = $this->quizzes;
-        usort($recentQuizzes, function($a, $b) { return strtotime($b['created_at']) - strtotime($a['created_at']); });
-        array_splice($recentQuizzes, 5);
-        // On trie les quizzes par popularité (nombre de fois joués)
-        $popularQuizzes = $this->quizzes;
-        usort($popularQuizzes, function($a, $b) { return $b['played_nb'] - $a['played_nb']; });
-        array_splice($popularQuizzes, 5);
+        usort($recentQuizzes, function($a, $b) { 
+            return strcmp($b['created_at'], $a['created_at']); 
+        });
+        $recentQuizzes = array_slice($recentQuizzes, 0, 5);
 
-        // On récupère un nombre aléatoir parmi les quizzes pour le bouton de lancement aléatoire
+        print_r(strtotime($recentQuizzes[3]['created_at']));
+
+        
+
+        // On récupère un nombre aléatoire parmi les quizzes pour le bouton de lancement aléatoire
         if (!empty($this->quizzes)) {
             $randomQuiz = $this->quizzes[array_rand($this->quizzes, 1)];
             $this->randomQuizId = $randomQuiz['id'];

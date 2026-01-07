@@ -6,7 +6,7 @@
         <input type="email" id="email" name="email" placeholder="email" required>
         <input type="password" id="password" name="password" placeholder="mot de passe" required>
         <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmation du mot de passe" required>
-        <button type="submit" id="submit-button">S'inscrire</button>
+        <button type="submit" id="submit-button" class="button">S'inscrire</button>
         <div class="password-requirements">
             <p> Le mot de passe doit contenir au moins :</p>
             <span class="pass pass1 pass-length">8 caractères</span>
@@ -51,8 +51,13 @@
 
     function checkForm() {
         if (validatePassword()) {
-            document.querySelector('.password-requirements p').innerHTML = 'Le mot de passe est robuste.';
+            document.querySelector('.password-requirements .pass-length').textContent = 'Le mot de passe est robuste.';
+            document.querySelector('.password-requirements .pass-upper').innerHTML = '';
+            document.querySelector('.password-requirements .pass-lower').innerHTML = '';
+            document.querySelector('.password-requirements .pass-number').innerHTML = '';
+            document.querySelector('.password-requirements p').innerHTML = '';
             document.querySelectorAll('.password-requirements .pass1').forEach(item => item.style.display = 'none');
+            document.querySelector('.password-requirements .pass-length').style.display = 'block';
             let confirmP = password.value === passwordConfirm.value;
             form.querySelector('#submit-button').style.display = confirmP ? 'block' : 'none';
             document.querySelector('#passconf-label').style.display = 'block';
@@ -81,5 +86,6 @@
     // Script simple pour ajuster la largueur d'un bouton en fonction des inputs
     let button = document.querySelector('.connection-form button[type="submit"]');
     let input = document.querySelector('.connection-form input');
-    button.style.width = input.offsetWidth + 'px';
+    button.style.width = input.offsetWidth - 10 + 'px';
+    button.style.textAlign = 'center';
 </script>

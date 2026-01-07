@@ -49,6 +49,6 @@ class UserModel extends BaseModel {
     public static function updateScore(int $score, int $userId): ?int {
         $sql = "UPDATE users SET score = score  + :score WHERE id = :user_id LIMIT 1";
         $stmt = self::executeQuery($sql, ['score' => $score, 'user_id' => $userId]);
-        return $stmt->rowCount() > 0 ? $stmt->rowCount() : null;
+        return $stmt ?: null;
     }
 }

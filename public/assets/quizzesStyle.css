@@ -31,3 +31,48 @@ div.quiz-area div.answers-area div.line div.answer {
     border-radius: 10px;
     box-shadow: 5px 0 0 var(--purple);
 }
+
+/* Pour créer un quiz */
+div.quiz-creation {
+    background-color: var(--blue);
+    width: 300px;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding : 20px;
+    border: solid 1px var(--purple);
+}
+form.quiz-creation-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+form.quiz-creation-form input, textarea, select {
+    padding: 10px;
+    width: 90%;
+    border-radius: 5px;
+    border: solid 1px var(--purple);
+    margin: 2px;
+}
+
+div.category-cards {
+    padding: 10px;
+    margin: 10px;
+    display:flex;
+    flex-wrap: wrap;
+    width: fit-content;
+    gap: 20px;
+}
+form.category-card {
+    background-color: var(--white);
+    border: solid 1px var(--purple);
+    text-align: center;
+    border-radius: 10px;
+    padding: 0 10px;
+    padding-bottom: 10px;
+}

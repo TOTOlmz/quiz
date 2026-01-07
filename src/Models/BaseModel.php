@@ -67,6 +67,7 @@ abstract class BaseModel {
         return self::$pdo;
     }
 
+
     // Fonction qui exécute une requête SQL
     protected static function executeQuery(string $sql, array $params = []): \PDOStatement {
         $pdo = self::getPdo();
@@ -91,6 +92,12 @@ abstract class BaseModel {
     protected static function fetchAll(string $sql, array $params = []): array {
         $stmt = self::executeQuery($sql, $params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Fonction qui récupère toutes les valeurs d'une seule colonne
+    protected static function fetchAllColumn(string $sql, array $params = [], int $columnIndex = 0): array {
+        $stmt = self::executeQuery($sql, $params);
+        return $stmt->fetchAll(PDO::FETCH_COLUMN, $columnIndex);
     }
 
     // Fonction qui compte les lignes

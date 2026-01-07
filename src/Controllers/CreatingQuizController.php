@@ -52,11 +52,25 @@ class CreatingQuizController extends BaseController {
         if (empty($data['name'])) {
             $this->errors[] = 'Merci de renseigner un nom pour votre quiz';
         }
+        if (strlen($data['description']) > 50) {
+            $this->errors[] = 'La déscription ne doit pas dépasser 50 caractères';
+        }
+        if (empty($data['color'])) {
+            $data['color'] = '#000000';
+        }
+        if (empty($data['category'])) {
+            $data['category'] = 'Autre';
+        }
+        if (empty($_SESSION['user_id'])) {
+            $this->errors[] = 'Seules les personnes connectées peuvent créer des quizzes';
+        }
+
         if (empty($this->errors)) {
             $quizId = QuizModel::createQuiz([
                 'name' => $data['name'],
                 'description' => $data['description'] ?? '',
                 'color' => $data['color'],
+                'category' => $data['category'] ?? 'Autre',
                 'user_id' => $_SESSION['user_id']
             ]);
 

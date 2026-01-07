@@ -16,11 +16,13 @@ session_start();
 // Import des contrôleurs avec namespaces
 use App\Controllers\HeaderController;
 use App\Controllers\HomeController;
+use App\Controllers\LegalController;
 use App\Controllers\ConnectionController;
 use App\Controllers\RegistrationController;
 
 use App\Controllers\CreatingQuizController;
 use App\Controllers\QuizController;
+use App\Controllers\CategoriesController;
 
 use App\Controllers\Admin\AdminController;
 use App\Controllers\Users\UserSpaceController;
@@ -29,11 +31,14 @@ use App\Controllers\Users\UserSpaceController;
 // Instanciation des contrôleurs
 $header = new HeaderController();
 $home = new HomeController();
+$legalController = new LegalController();
+
 $connectionController = new ConnectionController();
 
 $registrationController = new RegistrationController();
 $creatingQuizController = new CreatingQuizController();
 $quizController = new QuizController();
+$categoriesController = new CategoriesController();
 
 $adminController = new AdminController();
 $userSpaceController = new UserSpaceController();
@@ -59,6 +64,7 @@ $uri = '/'.ltrim($uri, '/'); // garantit un slash initial
     <link rel="stylesheet" href="./assets/mainStyle.css">
     <link rel="stylesheet" href="./assets/style.css">
     <link rel="stylesheet" href="./assets/quizzesStyle.css">
+    <link rel="stylesheet" href="./assets/popupStyle.css">
     <title>Ze Quiz</title>
 </head>
 <body>
@@ -77,9 +83,10 @@ $uri = '/'.ltrim($uri, '/'); // garantit un slash initial
 
             else if (strpos($uri, '/creer-un-quiz') === 0) { $creatingQuizController->creatingQuizArea(); }
             else if (strpos($uri, '/quiz') === 0) { $quizController->quizArea(); }
+            else if (strpos($uri, '/categories') === 0) { $categoriesController->categoriesArea(); }
 
 
-            else if (strpos($uri, '/legal') === 0) { require_once __DIR__ . '/../src/Views/legalView.php'; }
+            else if (strpos($uri, '/legal') === 0) { $legalController->legalArea(); }
 
             else { echo '<h1 style="margin:15px;">404 - Page non trouvée</h1>'; }
         ?>
