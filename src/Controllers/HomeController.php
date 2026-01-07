@@ -46,7 +46,6 @@ class HomeController {
         });
         $recentQuizzes = array_slice($recentQuizzes, 0, 5);
 
-        print_r(strtotime($recentQuizzes[3]['created_at']));
 
         
 
