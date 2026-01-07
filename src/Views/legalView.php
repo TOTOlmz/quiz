@@ -37,40 +37,5 @@
     </p>
     <button class="form-calling-btn button">Contactez-nous</button>
 
-
-    <div class="overlay">
-        <div class="pop-up">
-            <h3>Contactez-nous</h3>
-            <form action="" method="POST" class="quiz-creation-form">
-                <input type="text" id="name" name="name" placeholder="Votre nom" required>
-                <input type="email" id="email" name="email" placeholder="Votre email" required>
-                <textarea id="message" name="message" rows="4" placeholder="Votre message" required></textarea>
-
-                <button type="submit" class="button">Envoyer</button>
-            </form>
-        </div>
-    </div>
     <a href="./" class="button">Retour à l'accueil</a>
 </div>
-
-<script>
-
-    // script pour faire apparaitre les quizzes dans une div overlay
-    const btn = document.querySelector('.form-calling-btn');
-    const overlay = document.querySelector('.overlay');
-    overlay.style.display = 'none';
-
-    
-    btn.addEventListener('click', function(event) {
-        event.stopPropagation();
-        console.log('omg he clicked me');
-        overlay.style.display = 'flex';
-    });
-    
-    
-    overlay.addEventListener('click', function(event) {
-        if (event.target === overlay) {
-            overlay.style.display = 'none';
-        }
-    });
-</script>

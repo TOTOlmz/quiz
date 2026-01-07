@@ -39,6 +39,9 @@ class CreatingQuizController extends BaseController {
         }
 
         // Appel de la vue
+        $errors = $this->errors;
+        $success = $this->success;
+        $nbOfQuestions = $this->nbOfQuestions;
         $quiz = $this->currentQuiz;
         require_once __DIR__ . '/../Views/creatingQuizView.php';
     }

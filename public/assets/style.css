@@ -98,6 +98,7 @@ div.quiz-card {
     height: 85px;
     background-color: var(--white);
     border: solid 2px;
+    border-radius: 5px;
     margin: 20px;
     overflow: hidden;
 }
@@ -134,4 +135,8 @@ div.action-area {
     margin: 20px auto;
     margin-top : 50px;
     justify-content: space-around;
+}
+
+.form-calling-btn {
+    cursor: pointer;
 }

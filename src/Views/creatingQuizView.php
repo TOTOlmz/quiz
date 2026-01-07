@@ -61,7 +61,7 @@
                 <option value="D">Réponse D</option>
             </select>
 
-            <button type="submit" name="create_question">Créer la question</button>
+            <button type="submit" name="create_question" class="button">Créer la question</button>
         </form>
     </div>
 </div>
