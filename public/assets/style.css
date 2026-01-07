@@ -122,11 +122,7 @@ div.action-area {
     text-align: center; 
     display: flex; 
     flex-wrap: wrap;
-    margin: 10px auto;
-}
-
-div.action-area > div {
-    width: 300px;
     margin: 20px auto;
-    text-align: right;
+    margin-top : 50px;
+    justify-content: space-around;
 }

@@ -30,14 +30,8 @@
 
     <h3>Testez vos connaissances et défiez vos amis !</h3>
     <div class="action-area">
-        <div>
-            <a href="./quiz?id=<?= $randomQuizId ?>" class="button">Jouer l'aléatoire</a>
-        </div>
-        <div>
-            <a href="./quizzes-par-categories" class="button">Voir tous les quizzes</a>
-        </div>
-        <div>
-            <a href="./inscription" class="button">Rejoindre l'aventure</a>
-        </div>
+            <a href="./quiz?id=<?= $randomQuizId ?>" class="button">Quiz aléatoire</a>
+            <a href="./quizzes-par-categories" class="button">Les catégories</a>
+            <a href="./inscription" class="button">S'inscrire</a>
     </div>
 </div>

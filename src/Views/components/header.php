@@ -13,24 +13,14 @@
     <div class="links-area" id="navbar-menu">
         <?php if ($connected): ?>
             <?php if ($admin): ?>
-                <div>
                     <a class="button nav-btn" href="./espace-admin">Espace admin</a>
-                </div>
-                <div>
                     <a class="button nav-btn" href="./deconnexion">Déconnexion</a>
-                </div>
             <?php else: ?>
-                <div>
                     <a class="button nav-btn" href="./mon-espace">Mon espace</a>
-                </div>
-                <div>
                     <a class="button nav-btn" href="./deconnexion">Déconnexion</a>
-                </div>
             <?php endif; ?>
         <?php else: ?>
-            <div>
                 <a class="button nav-btn" href="./connexion">Connexion</a>
-            </div>
         <?php endif; ?>
     </div>
 </nav>
