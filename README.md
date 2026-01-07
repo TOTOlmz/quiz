@@ -4,8 +4,9 @@ WebApp proposant des quizzes <br>
 
 
 les visiteurs peuvent y jouer <br>
-les utilisateurs peuvent en créer <br>
-l'administrateur peut en créer et suspendre des joueurs si leurs quizzes sont problématiques (possibilité de signaler un joueur) <br>
+les utilisateurs peuvent y jouer et en créer <br>
+l'administrateur peut en créer et suspendre des joueurs si leurs quizzes sont problématiques (possibilité de signaler un quiz) <br>
+
 
 ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ <br>
 Développé en PHP et JS <br>
