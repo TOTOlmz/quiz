@@ -1,0 +1,28 @@
+<?php
+/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    Configuration des variables d'environnement
+    Fichier de configuration de la base de données
+    
+    INSTRUCTIONS:
+    1. Copiez ce fichier et renommez-le en "variables.php"
+    2. Remplacez les valeurs par vos propres identifiants
+    3. Le fichier variables.php ne sera jamais versionné (voir .gitignore)
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
+
+// Configuration de la base de données
+$_ENV['DB_HOST'] = 'localhost';
+$_ENV['DB_NAME'] = 'quiz';
+$_ENV['DB_USER'] = 'root';
+$_ENV['DB_PASS'] = '';
+$_ENV['DB_PORT'] = '3306';
+
+// Options de connexion PDO (optionnel, pour les cas avancés)
+$_ENV['DB_CHARSET'] = 'utf8mb4';
+$_ENV['DB_TIMEZONE'] = 'Europe/Paris';
+
+// Configuration SMTP Hostinger
+$_ENV['SMTP_HOST'] = 'smtp.hostinger.com';
+$_ENV['SMTP_PORT'] = '587';
+$_ENV['SMTP_USER'] = 'votre-email@votredomaine.com'; // Remplacez par votre email Hostinger
+$_ENV['SMTP_PASS'] = 'votre-mot-de-passe'; // Remplacez par votre mot de passe email
+$_ENV['SMTP_FROM'] = 'votre-email@votredomaine.com'; // Email d'envoi par défaut
