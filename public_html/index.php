@@ -46,7 +46,7 @@ $userSpaceController = new UserSpaceController();
 
     
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$base = '/quiz/public_html'; // ajuster selon le dossier d'installation
+$base = '/quiz/public_html/'; // Renseigner ici le chemin à suprimer en local
 
 if (stripos($path, $base) === 0) {
     $uri = substr($path, strlen($base));
@@ -54,21 +54,20 @@ if (stripos($path, $base) === 0) {
     $uri = $path;
 }
 
-
 $uri = '/'.ltrim($uri, '/'); // garantit un slash initial
+// echo 'uri = ' . $uri . '<br>Path = ' . $path . '<br>Base = ' . $base . '<br>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./assets/images/logo.png">
+    <link rel="icon" href="./assets/images/zequiz.svg">
     
     <link rel="stylesheet" href="./assets/mainStyle.css">
     <link rel="stylesheet" href="./assets/style.css">
     <link rel="stylesheet" href="./assets/quizzesStyle.css">
     <link rel="stylesheet" href="./assets/popupStyle.css">
-    
     <link rel="stylesheet" href="./assets/adminStyle.css">
     <title>Ze Quiz</title>
 </head>

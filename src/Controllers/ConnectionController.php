@@ -17,6 +17,7 @@ class ConnectionController {
             
             $email = $_POST['email'];
             $password = $_POST['password'];
+            
 
 
             if (!$email || !$password) {
@@ -49,7 +50,7 @@ class ConnectionController {
                 }
             }
         }
-
+        
         // On charge la vue
         require ROOT_PATH . '/src/Views/connectionView.php';
         

@@ -50,8 +50,10 @@ ob_start();
         shape.style.transform = 'translate(0%, 0%)';
     });
     logoArea.addEventListener('mouseleave', () => {
-        logoPath.style.fill = 'var(--black)';
-        shape.style.transform = 'translate(-100%, 0%)';
+        setTimeout(() => {
+            logoPath.style.fill = 'var(--black)';
+            shape.style.transform = 'translate(-100%, 0%)';
+        }, 300);
     });
 
 

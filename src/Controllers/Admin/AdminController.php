@@ -26,9 +26,17 @@ class AdminController extends BaseController {
 
         // gestion du formulaire de suspension d'un utilisateur
         if (isset($_POST['suspend-user'])) {
-            $userId = isset($_POST['suspension-id']) ? trim($_POST['suspension-id']) : 0;
+            $userId = isset($_POST['suspension-id']) ? intval($_POST['suspension-id']) : 0;
             $userPseudo = isset($_POST['suspension-pseudo']) ? trim($_POST['suspension-pseudo']) : '';
-            if (intval($userId) !== 0 || strlen($userPseudo) > 0) {
+            
+            if (intval($userId) === 1) {
+                $this->errors[] = 'Voyons mon cher, soyez raisonnable. Ne vous suspendez pas, prenez plutôt des vacances';
+            }
+            if (intval($userId) === 0 || strlen($userPseudo) > 0) {
+                $this->errors[] = 'Merci de renseigner un champ au minimum';
+            }
+            
+            if (empty($this->errors) && (intval($userId) !== 0 || strlen($userPseudo) > 0)) {
                 if ($userId) {
                     $idResult = AdminModel::suspendUserById($userId);
                 }
@@ -41,8 +49,6 @@ class AdminController extends BaseController {
                 } else {
                     $this->errors[] = 'Erreur lors de la suspension du joueur. Veuillez vérifier l\'ID.';
                 }
-            } else {
-                $this->errors[] = 'L\'ID ou pseudo du joueur doit être valide.';
             }
         }
         // gestion du formulaire d'annulation de suspension d'un utilisateur

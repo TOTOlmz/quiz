@@ -1,7 +1,8 @@
 <div>
-    <?php require_once __DIR__ . '/components/checks.php'; ?>
+    
 
     <div class="connection">
+        <?php require_once __DIR__ . '/components/checks.php'; ?>
         <form class="connection-form" method="POST">
             <h2>Connexion</h2>
             <input type="email" id="email" name="email" placeholder="Email" required>

@@ -55,10 +55,6 @@ class UserSpaceController extends BaseController {
         if (empty($this->errors)) {
             $this->quizzes = QuizModel::getQuizByUserId($userId);
         }
-        if (!$this->quizzes) {
-            $this->errors[] = 'Aucun quiz trouvé.';
-        }
-
         // Simplification de l'appel des variables 
         $errors = $this->errors;
         $success = $this->success;

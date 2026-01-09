@@ -29,6 +29,7 @@ class CategoriesController extends BaseController {
                 foreach ($this->quizzes as &$quiz) {
                     $quiz['picture'] = QuizModel::getUserPictureFromQuiz((int)$quiz['id']);
                 }
+                unset($quiz);
             }
         }
 

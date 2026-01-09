@@ -4,10 +4,12 @@
 
 
     <?php // Section permettant de lister les catégories ?>
-
+    
     <h3>Catégories de Quizzes</h3>
     <div class="category-cards">
+        
         <?php foreach ($categories as $category): ?>
+
             <form action="" method="POST" class="category-card">
                 <h4><?= htmlspecialchars($category); ?></h4>
                 <input type="hidden" name="category" value="<?= htmlspecialchars($category); ?>">
@@ -28,12 +30,14 @@
             <?php foreach ($quizzes as $quiz): ?>
             <div class="quiz-card" style="border-color: <?= htmlspecialchars($quiz['color']) ?>; box-shadow: 5px 5px 0 <?= htmlspecialchars($quiz['color']) ?>, -5px -5px 0 <?= htmlspecialchars($quiz['color']) ?>;">
                 <a href="./quiz?id=<?= intval($quiz['id']); ?>" class="card-link">
-                    <img src="./assets/images/users/<?= $quiz['picture'] ?>" style="border-color: <?= htmlspecialchars($quiz['color']) ?>;" alt="Créateur du quiz" class="quiz-creator-picture">
+                    <img src="./assets/images/users/<?= htmlspecialchars($quiz['picture']) ?>" style="border-color: <?= htmlspecialchars($quiz['color']) ?>;" alt="Créateur du quiz" class="quiz-creator-picture">
                     <h4><?= $quiz['name']; ?></h4>
                     <p><?=  $quiz['description']; ?></p>
                 </a>
             </div>
-            <?php endforeach; ?>
+            
+            <?php endforeach;  ?>
+            
         </div>
         <div class="quiz-navigation">
             <a href="./categories" class="button">Retour aux catégories</a>

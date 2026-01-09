@@ -14,6 +14,7 @@ class QuizController extends BaseController {
     protected string $success = '';
     protected int $nbOfQuestions = 0;
     protected array $currentQuiz = [];
+    protected string $quizLink = '';
 
     public function quizArea() {
 
@@ -21,6 +22,7 @@ class QuizController extends BaseController {
         if (isset($_GET['id'])) {
             $intId = intval($_GET['id']);
             // On récupère le quiz
+            $this->quizLink = $_SERVER['REQUEST_URI'];
             $getQuiz = QuizModel::getQuizById($intId);
             if (!$getQuiz) {
                 $this->errors[] = 'Quiz introuvable';
@@ -99,6 +101,7 @@ class QuizController extends BaseController {
         $errors = $this->errors;
         $success = $this->success;
         $quiz = $this->currentQuiz;
+        $quizLink = $this->quizLink;
         require_once ROOT_PATH . '/src/Views/quizView.php';
     }
 

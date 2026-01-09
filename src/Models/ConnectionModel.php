@@ -9,7 +9,7 @@ use App\Models\BaseModel;
 class ConnectionModel extends BaseModel {
     
     // Fonction permettant de récupérer les informations utilisateur dans la bdd
-    public static function connection($email, $password) {
+    public static function connection(string $email, string $password) {
         $sql = 'SELECT * FROM users WHERE email = :email';
         $stmt = self::fetchOne($sql, ['email' => $email]);
         $user = $stmt;

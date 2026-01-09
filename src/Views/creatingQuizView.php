@@ -3,7 +3,7 @@
 <div class="quiz-creation">    
     <?php require_once __DIR__ . '/components/checks.php'; ?>
     <h2>Créer un nouveau quiz</h2>
-    <form action="" method="POST" class="quiz-creation-form">
+    <form action="" method="POST" class="question-creation-form">
 
         <label for="name">Nom du quiz :</label>
         <input type="text" id="name" name="name" required>     
@@ -36,25 +36,16 @@
         <h2><?=  isset($quiz['id']) ? "Quiz sur le theme : {$quiz['name']}" : ''; ?> (<?=  isset($quiz['questions']) ? count($quiz['questions']) : ''; ?> questions)</h2>
 
         <form action="" method="POST" class="question-creation-form">
-            <label for="question">Question :</label>
-            <textarea id="question" name="question" required></textarea>
+            
+            <textarea id="question" name="question" placeholder="question" required></textarea>
             <br>
-
-            <label for="answer_A">Réponse A :</label>
-            <input type="text" id="answer_A" name="answer_A">
-
-            <label for="answer_B">Réponse B :</label>
-            <input type="text" id="answer_B" name="answer_B">
-
-            <label for="answer_C">Réponse C :</label>
-            <input type="text" id="answer_C" name="answer_C">
-
-            <label for="answer_D">Réponse D :</label>
-            <input type="text" id="answer_D" name="answer_D">
+            <input type="text" id="answer_A" name="answer_A" placeholder="Réponse A">
+            <input type="text" id="answer_B" name="answer_B" placeholder="Réponse B">
+            <input type="text" id="answer_C" name="answer_C" placeholder="Réponse C">
+            <input type="text" id="answer_D" name="answer_D" placeholder="Réponse D">
             <br>
-
-            <label for="correct_answer">Réponse correcte :</label>
             <select id="correct_answer" name="correct_answer" required>
+                <option value="" selected hidden>Réponse correcte</option>
                 <option value="A">Réponse A</option>
                 <option value="B">Réponse B</option>
                 <option value="C">Réponse C</option>

@@ -58,7 +58,7 @@ div.quiz-area div.quiz-end {
 }
 
 /* Pour créer un quiz */
-div.quiz-creation {
+div.question-creation, div.quiz-creation {
     background-color: var(--blue);
     width: 300px;
     margin: auto;
@@ -70,20 +70,16 @@ div.quiz-creation {
     padding : 20px;
     border: solid 1px var(--purple);
 }
-form.quiz-creation-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-
-form.quiz-creation-form input, textarea, select {
+form.question-creation-form input, form.question-creation-form textarea, form.question-creation-form select {
     padding: 10px;
     width: 90%;
     border-radius: 5px;
     border: solid 1px var(--purple);
     margin: 2px;
 }
+
+
 
 div.category-cards {
     padding: 10px;

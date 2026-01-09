@@ -154,4 +154,11 @@ footer {
     .button {
         padding: 10px 10px;
     }
+    
+    .button:hover {
+    transform: translateX(-5px);
+    margin-right: 5px;
+    margin-left: 15px;
+    box-shadow: -5px 0 0 var(--transparent);
+}
 }

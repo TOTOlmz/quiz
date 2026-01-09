@@ -1,5 +1,8 @@
 
 <div class="connection">
+    
+    <?php require_once __DIR__ . '/components/checks.php' ?>
+    
     <h2>Créer un compte</h2>
     <form class="connection-form" method="post" action="">
         <input type="text" id="pseudo" name="pseudo" placeholder="Pseudo" required>
@@ -23,7 +26,6 @@
 <div class="form-container">
     
     
-    <?php require_once __DIR__ . '/components/checks.php' ?>
 
 </div>
 

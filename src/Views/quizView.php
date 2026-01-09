@@ -17,6 +17,7 @@
             <p>Votre score : <span class="final-score"></span></p>
             <p><span class="percentage"></span>% de bonnes réponses  (<span class="result-stat"></span>)</p>
             <a href="./" class="button">Accueil</a>
+            <a href="<?= $quizLink; ?>" class="button">Rejouer</a>
         </div>
     </div>
     <div class="answers-area">
@@ -49,7 +50,7 @@
 
 
 
-<script>
+<script>/* script gérant les questions et l'envoi des résultats */
     // On stocke l'identifiant utilisateur dans une variable
     const userId = <?= isset($_SESSION['user_id']) ? intval($_SESSION['user_id']) : '0'; ?>;
     
@@ -141,6 +142,7 @@
         } else {
             div.style.backgroundColor = 'var(--wrong-answer)';
             div.style.color = 'var(--font-color-white)';
+            document.querySelector('[correct="1"]').style.backgroundColor = 'var(--green)';
         }
 
         // On désactive les autres réponses
@@ -217,12 +219,17 @@
 
 </script>
 
-<script>
+<script> /* Script gérant l'overlay de signalement */
     const reportOverlay = document.querySelector('.report-overlay');
     const reportBtn = document.querySelector('.report-quiz');
     const callBackBtn = document.querySelector('.report-form span.button');
+    let ForReportUserId = <?= isset($_SESSION['user_id']) ? intval($_SESSION['user_id']) : '0'; ?>;
 
     reportBtn.addEventListener('click', function() {
+        if (ForReportUserId === 0) {
+            alert('Vous devez être connecté pour signaler un quiz.');
+            return;
+        }
         reportOverlay.style.display = 'flex';
     });
     reportOverlay.addEventListener('click', function(event) {

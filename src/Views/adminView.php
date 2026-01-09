@@ -69,14 +69,14 @@
     </div>
 
     <div class="pop-up stats quizzes-div">
-        <h3>Évolution du nombre de quizzes</h3>
+        <h3>Nombre de quizzes créés sur la semaine</h3>
         <canvas id="quizzesChart"></canvas>
         <br>
         <span class="close-btn button">Fermer</span>
     </div>
     <div class="pop-up stats players-div">
     
-        <h3>Évolution du nombre de joueurs</h3>
+        <h3>Nombre d\'utilisateurs inscrits sur la semaine</h3>
         <canvas id="playersChart"></canvas>
         <br>
         <span class="close-btn button">Fermer</span>
@@ -121,7 +121,7 @@
         data: {
             labels: labels,
             datasets: [{
-                label: 'Nombre de quizzes créés sur la semaine',
+                label: '',
                 data: quizzesByDay,
                 borderWidth: 1,
                 borderColor: purple,
@@ -160,7 +160,7 @@
         data: {
             labels: labels,
             datasets: [{
-                label: 'Nombre d\'utilisateurs inscrits sur la semaine',
+                label: '',
                 data: playersByDay,
                 borderWidth: 1,
                 borderColor: purple,

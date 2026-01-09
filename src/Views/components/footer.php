@@ -6,7 +6,7 @@
 <div class="overlay contact-overlay">
     <div class="pop-up">
         <h3>Contactez-nous</h3>
-        <form action="" method="POST" class="quiz-creation-form">
+        <form action="" method="POST" class="question-creation-form">
             <input type="text" id="name" name="name" placeholder="Votre nom" required>
             <input type="email" id="email" name="email" placeholder="Votre email" required>
             <textarea id="message" name="message" rows="4" placeholder="Votre message" required></textarea>

@@ -10,7 +10,6 @@
                     <img src="./assets/images/users/<?= $pQuiz['picture'] ?>" style="border-color: <?= htmlspecialchars($pQuiz['color']) ?>;" alt="Créateur du quiz" class="quiz-creator-picture">
                     <h4><?= $pQuiz['name']; ?></h4>
                     <p><?=  $pQuiz['description']; ?></p>
-                    <?= $pQuiz['picture'] ?>
                 </a>
             </div>
         <?php endforeach; ?>
