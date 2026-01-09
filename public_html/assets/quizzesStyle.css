@@ -1,12 +1,31 @@
 div.quiz-area{
+    position: relative;
     background-color: var(--blue);
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
+    width: 80vw;
+    margin: auto;
+    border-radius: 10px;
+    padding : 20px;
+    border: solid 1px var(--purple);
     text-align: center;
-    border-radius: 15px;
+}
+
+div.quiz-area span.report-quiz {
+    position: absolute;
+    background-color: var(--transparent);
+    color: var(--font-color-black);
+    border-radius: 50%;
+    top: 10px;
+    right: 10px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    align-content: center;
+    transition: 0.3s ease;
+}
+div.quiz-area span.report-quiz:hover {
+    cursor: pointer;
+    background-color: var(--font-color-error);
+    color: var(--font-color-white);
 }
 
 div.quiz-area div.question-area {

@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 use App\Models\QuizModel;
+use App\Models\ReportModel;
 
 class QuizController extends BaseController {
 
@@ -32,6 +33,37 @@ class QuizController extends BaseController {
                 $this->nbOfQuestions = count($this->currentQuiz['questions']);
             }
 
+        }
+
+        if (isset($_POST['report-title'])) {
+            $quizId = intval($_POST['quiz-id']);
+            $creatorId = intval($_POST['creator-id']);
+            $reporterId = intval($_POST['reporter-id']);
+            $title = htmlspecialchars(trim($_POST['report-title']));
+            $comment = htmlspecialchars(trim($_POST['comment']));
+
+            $reportParams = [
+                'quiz-id' => $quizId,
+                'creator-id' => $creatorId,
+                'reporter-id' => $reporterId,
+                'title' => $title,
+                'comment' => $comment,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+
+            $reportCreated = ReportModel::createReport($reportParams);
+            if (!$reportCreated) {
+                $this->errors[] = 'Erreur lors de l\'envoi du signalement.';
+            } else {
+                $this->success = 'Signalement envoyé avec succès.';
+            }
+
+            $quizReported = QuizModel::reportQuiz($quizId);
+            if (!$quizReported) {
+                $this->errors[] = 'Erreur lors du signalement du quiz.';
+            } else {
+                $this->success = 'Quiz signalé avec succès.';
+            }
         }
 
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {

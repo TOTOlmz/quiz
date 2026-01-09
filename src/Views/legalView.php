@@ -40,7 +40,7 @@
     <p>
         Pour toute question, vous pouvez remplir le formulaire
     </p>
-    <button class="form-calling-btn button">Contactez-nous</button>
+    <button class="contact-form-calling-btn button">Contactez-nous</button>
 
     <a href="./" class="button">Accueil</a>
 </div>

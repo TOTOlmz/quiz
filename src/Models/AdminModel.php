@@ -14,16 +14,22 @@ class AdminModel extends BaseModel {
         return $stmt ?: [];
     }
 
-    public static function getNumberOfQuizzes(): int {
-        $sql = "SELECT COUNT(*) FROM quizzes";
-        $stmt = self::count($sql);
-        return $stmt ? (int)$stmt : 0;
+    public static function undoReport(int $quizId): ?int {
+        $sql = "UPDATE quizzes SET is_reported = 0 WHERE id = :id LIMIT 1";
+        $stmt = self::executeQuery($sql, ['id' => $quizId]);
+        return $stmt->rowCount() > 0 ? $stmt->rowCount() : null;
     }
 
-    public static function getNumberOfPlayers(): int {
-        $sql = "SELECT COUNT(*) FROM users";
-        $stmt = self::count($sql);
-        return $stmt ? (int)$stmt : 0;
+    public static function getQuizziesDate(): array {
+        $sql = "SELECT created_at FROM users";
+        $stmt = self::fetchAll($sql);
+        return $stmt ?: [];
+    }
+
+    public static function getPlayersDate(): array {
+        $sql = "SELECT created_at FROM users";
+        $stmt = self::fetchAll($sql);
+        return $stmt ?: [];
     }
 
 }

@@ -1,9 +1,17 @@
+<?php
+// echo '<pre>';
+// print_r($quiz);
+// echo '</pre>'; 
+?>
+
 <div class="quiz-area">
     <?php require_once __DIR__ . '/components/checks.php'; ?>
     <h2><?=  isset($quiz['name']) ? $quiz['name'] : ''; ?></h2>
 
     <div class="question-area">
+        <span class="report-quiz">⚐</span>
         <p></p>
+        <?php // div affichée à la fin du quiz ?>
         <div class="quiz-end">
             <h2>Fin du quiz</h2>
             <p>Votre score : <span class="final-score"></span></p>
@@ -11,7 +19,6 @@
             <a href="./" class="button">Accueil</a>
         </div>
     </div>
-
     <div class="answers-area">
         <div class="line line-one">
             <div class="answer" answer-value="A" correct="0"><p></p></div>
@@ -24,7 +31,22 @@
     </div>
 </div>
 
-<?php // div affichée à la fin du quiz ?>
+
+<div class="overlay report-overlay">
+    <div class="pop-up">
+        <h3>Signalement</h3>
+        <form class="report-form" action="" method="POST">
+            <input type="hidden" name="quiz-id" value="<?= isset($quiz['id']) ? intval($quiz['id']) : '0'; ?>">
+            <input type="hidden" name="creator-id" value="<?= isset($quiz['user_id']) ? intval($quiz['user_id']) : '0'; ?>">
+            <input type="hidden" name="reporter-id" value="<?= isset($_SESSION['user_id']) ? intval($_SESSION['user_id']) : '0'; ?>">
+            <input type="text" name="report-title" placeholder="Sujet" required>
+            <textarea name="comment" placeholder="Décrivez le problème..." required></textarea>
+            <button type="submit" class="button">Envoyer le signalement</button><span class="button">Retour au quiz</span>
+        </form>
+            
+    </div>
+</div>
+
 
 
 <script>
@@ -193,4 +215,22 @@
         });
     }
 
+</script>
+
+<script>
+    const reportOverlay = document.querySelector('.report-overlay');
+    const reportBtn = document.querySelector('.report-quiz');
+    const callBackBtn = document.querySelector('.report-form span.button');
+
+    reportBtn.addEventListener('click', function() {
+        reportOverlay.style.display = 'flex';
+    });
+    reportOverlay.addEventListener('click', function(event) {
+        if (event.target === reportOverlay) {
+            reportOverlay.style.display = 'none';
+        }
+    });
+    callBackBtn.addEventListener('click', function() {
+        reportOverlay.style.display = 'none';
+    });
 </script>

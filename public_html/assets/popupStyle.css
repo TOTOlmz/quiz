@@ -5,7 +5,7 @@ div.overlay {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.25);
-    display: flex;
+    display: none;
     z-index: 1000;
 }
 
@@ -18,7 +18,7 @@ div.pop-up {
     z-index: 1001;
     width: 80%;
 }
-
+/* Pour l'affichage des catégories */
 div.pop-up div.popup-quizzes-cards {
     background-color: var(--white);
     width: 100%;
@@ -31,4 +31,14 @@ div.pop-up div.popup-quizzes-cards {
     padding: 10px;
     padding-top: 20px;
     text-align: center;
+}
+
+/* Pour l'affichage des panneaux de signalement */
+div.report-overlay div.pop-up { text-align: center; }
+form.report-form input, textarea {
+    padding: 10px;
+    width: 90%;
+    border-radius: 5px;
+    border: solid 1px var(--purple);
+    margin: 2px;
 }

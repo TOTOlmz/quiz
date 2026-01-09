@@ -10,7 +10,7 @@ class QuizModel extends BaseModel {
 
     public static function getQuizById(int $id): ?array {
         /*$sql = "SELECT id, name, description, created_at FROM quizzes WHERE id = :id";*/
-        $sql = "SELECT q.id, q.name, q.description, q.created_at, u.pseudo 
+        $sql = "SELECT q.id, q.name, q.description, q.created_at, u.id AS user_id, u.pseudo 
                 FROM quizzes q JOIN users u ON q.user_id = u.id 
                 WHERE q.id = :id";
         $stmt = self::fetchOne($sql, ['id' => $id]);
@@ -69,6 +69,12 @@ class QuizModel extends BaseModel {
 
     public static function updatePlayed($quizId): ?int {
         $sql = "UPDATE quizzes SET played_nb = played_nb + 1 WHERE id = :id LIMIT 1";
+        $stmt = self::executeQuery($sql, ['id' => $quizId]);
+        return $stmt->rowCount() > 0 ? $stmt->rowCount() : null;
+    }
+
+    public static function reportQuiz($quizId): ?int {
+        $sql = "UPDATE quizzes SET is_reported = 1 WHERE id = :id LIMIT 1";
         $stmt = self::executeQuery($sql, ['id' => $quizId]);
         return $stmt->rowCount() > 0 ? $stmt->rowCount() : null;
     }
