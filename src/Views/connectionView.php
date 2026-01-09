@@ -2,13 +2,13 @@
     
 
     <div class="connection">
-        <?php require_once __DIR__ . '/components/checks.php'; ?>
+        <?php require_once ROOT_PATH . '/src/Views/components/checks.php'; ?>
         <form class="connection-form" method="POST">
             <h2>Connexion</h2>
             <input type="email" id="email" name="email" placeholder="Email" required>
             <input type="password" id="password" name="password" placeholder="Mot de passe" required>
 
-            <button type="submit" class="button">Se connecter</button>
+            <button type="submit" name="login" class="button">Se connecter</button>
         </form>
         <p>Pas encore de compte ? <a href="./inscription">Inscrivez-vous ici</a></p>
     </div>

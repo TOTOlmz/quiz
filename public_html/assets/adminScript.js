@@ -15,6 +15,7 @@ const quizzesChartBtn = document.getElementById('quizzes-btn');
 const playersChartDiv = document.querySelector('.players-div');
 const playersChartBtn = document.getElementById('players-btn');
 
+// listeners pour ouvrir et fermer les overlays
 usersBtn.addEventListener('click', () => {
     adminOverlay.style.display = 'flex';
     usersDiv.style.display = 'block';
@@ -52,6 +53,7 @@ closeButtons.forEach(button => {
         playersChartDiv.style.display = 'none';
     });
 });
+
 
 /* Gestion du formulaire de suspension */ 
 const newSuspensionBtn = document.querySelector('.new-suspension');

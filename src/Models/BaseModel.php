@@ -7,8 +7,8 @@ namespace App\Models;
 
 use PDO;
 
-// Charger la configuration des variables d'environnement
-require_once __DIR__ . '/../Config/variables.php';
+// Charge la configuration des variables d'environnement
+require_once ROOT_PATH . '/src/Config/variables.php';
 
 abstract class BaseModel {
 
@@ -17,13 +17,13 @@ abstract class BaseModel {
     // Indicateur d'initialisation
     private static bool $initialized = false;
 
-    // Fonction définissant le PDO
+    // On définit le PDO
     public static function setPdo(PDO $pdo): void {
         self::$pdo = $pdo;
         self::$initialized = true;
     }
 
-    // Fonction qui initialise le PDO
+    //  Initialisation du PDO
     public static function initializePdo(): void {
         // Si déjà initialisé, ne rien faire
         if (self::$initialized && self::$pdo !== null) {
@@ -31,13 +31,13 @@ abstract class BaseModel {
         }
 
         try {
-            // Vérifier que les variables d'environnement existent
+            // On vérifie les variables d'environnement
             if (empty($_ENV['DB_HOST']) || empty($_ENV['DB_NAME']) || 
                 empty($_ENV['DB_USER']) || empty($_ENV['DB_PORT'])) {
                 throw new \Exception('Les variables d\'environnement de base de données ne sont pas configurées.');
             }
 
-            // Créer la connexion PDO
+            // On crée la connexion PDO
             self::$pdo = new PDO(
                 'mysql:host=' . $_ENV['DB_HOST'] . 
                 ';port=' . $_ENV['DB_PORT'] . 
@@ -58,7 +58,7 @@ abstract class BaseModel {
         }
     }
 
-    // Fonction qui récupère le PDO (pour les requêtes)
+    // Récupération du PDO
     protected static function getPdo(): PDO {
         if (self::$pdo === null) {
             // Initialiser automatiquement à la première utilisation

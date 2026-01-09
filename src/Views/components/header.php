@@ -1,6 +1,4 @@
-<?php // navbar permettant la navigation 
-ob_start();
-?>
+<?php // navbar permettant la navigation ?>
 
 <nav class="navbar">
     <a href="./" class="brand-area">
@@ -33,7 +31,7 @@ ob_start();
     </div>
 </nav>
 
-<script>
+<script> /* Animation du logo dans la navbar */
     const logoArea = document.querySelector('.brand-area');
     const logo = document.querySelector('.navbar-logo');
     const logoPath = document.querySelector('.navbar-logo path');

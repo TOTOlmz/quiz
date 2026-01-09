@@ -3,9 +3,8 @@
     Configuration des variables d'environnement
     Fichier de configuration de la base de données
     
-    INSTRUCTIONS:
-    1. Copiez ce fichier et renommez-le en "variables.php"
-    2. Remplacez les valeurs par vos propres identifiants
+    A configurer avec vos variables. 
+    Fichier à renommer variables.php
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 
 // Configuration de la base de données
@@ -15,11 +14,10 @@ $_ENV['DB_USER'] = 'root';
 $_ENV['DB_PASS'] = '';
 $_ENV['DB_PORT'] = '3306';
 
-// Options de connexion PDO (optionnel, pour les cas avancés)
 $_ENV['DB_CHARSET'] = 'utf8mb4';
 $_ENV['DB_TIMEZONE'] = 'Europe/Paris';
 
-// Configuration SMTP Hostinger
+// Configuration SMTP
 $_ENV['SMTP_HOST'] = 'votre.lien.stmp';
 $_ENV['SMTP_PORT'] = 'XXX';
 $_ENV['SMTP_USER'] = 'exemple@adresse.mail'; // Remplacez par votre email

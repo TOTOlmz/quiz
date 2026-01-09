@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+// On définit le chemin racine utilisé dans l'ensemble du projet
 define('ROOT_PATH', dirname(__DIR__));
 require_once ROOT_PATH . '/vendor/autoload.php';
 
@@ -11,13 +12,14 @@ error_reporting(E_ALL);
 
 session_start();
 
-// Initialiser le PDO (charge automatiquement variables.php)
+// On initialise le PDO (et on charge automatiquement variables.php)
 \App\Models\BaseModel::initializePdo();
 
 // Import des contrôleurs avec namespaces
 use App\Controllers\HeaderController;
 use App\Controllers\HomeController;
 use App\Controllers\LegalController;
+
 use App\Controllers\ConnectionController;
 use App\Controllers\RegistrationController;
 
@@ -35,8 +37,8 @@ $home = new HomeController();
 $legalController = new LegalController();
 
 $connectionController = new ConnectionController();
-
 $registrationController = new RegistrationController();
+
 $creatingQuizController = new CreatingQuizController();
 $quizController = new QuizController();
 $categoriesController = new CategoriesController();
@@ -44,9 +46,9 @@ $categoriesController = new CategoriesController();
 $adminController = new AdminController();
 $userSpaceController = new UserSpaceController();
 
-    
+// On prépare la gestion des routes
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$base = '/quiz/public_html/'; // Renseigner ici le chemin à suprimer en local
+$base = '/quiz/public_html/'; // Renseigner ici le chemin (en local)
 
 if (stripos($path, $base) === 0) {
     $uri = substr($path, strlen($base));
@@ -56,6 +58,13 @@ if (stripos($path, $base) === 0) {
 
 $uri = '/'.ltrim($uri, '/'); // garantit un slash initial
 // echo 'uri = ' . $uri . '<br>Path = ' . $path . '<br>Base = ' . $base . '<br>';
+
+// On gère les actions de redirection avant le HTML
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (strpos($uri, '/connexion') === 0) { $connectionController->connection(); }
+    else if (strpos($uri, '/deconnexion') === 0) { $connectionController->logout(); }
+    else if (strpos($uri, '/inscription') === 0) { $registrationController->registration(); }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +72,7 @@ $uri = '/'.ltrim($uri, '/'); // garantit un slash initial
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./assets/images/zequiz.svg">
-    
+    <?php // On appelle les styles ?>
     <link rel="stylesheet" href="./assets/mainStyle.css">
     <link rel="stylesheet" href="./assets/style.css">
     <link rel="stylesheet" href="./assets/quizzesStyle.css">
@@ -72,16 +81,15 @@ $uri = '/'.ltrim($uri, '/'); // garantit un slash initial
     <title>Ze Quiz</title>
 </head>
 <body>
-    <?php $header->header(); ?>
+    <?php 
+        // Appel du header
+        $header->header(); 
+    ?>
 
     <div class="main">
         <?php
+        // On gère le routing 
             if ($uri == '/') { $home->homeArea(); }
-            else if (strpos($uri, '/connexion') === 0) { $connectionController->connection(); }
-            else if (strpos($uri, '/deconnexion') === 0) { $connectionController->logout(); }
-            else if (strpos($uri, '/inscription') === 0) { $registrationController->registration(); }
-
-
             else if (strpos($uri, '/espace-admin') === 0) { $adminController->adminArea(); }
             else if (strpos($uri, '/mon-espace') === 0) { $userSpaceController->userSpace(); }
 

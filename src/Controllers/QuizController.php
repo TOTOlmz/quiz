@@ -1,6 +1,6 @@
 <?php
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-    Controlleur gérant la création d'un quiz
+    Controlleur gérant l'affichage d'un quiz
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 namespace App\Controllers;
 
@@ -37,6 +37,7 @@ class QuizController extends BaseController {
 
         }
 
+        // Gestion du formulaire de signalement de quiz
         if (isset($_POST['report-title'])) {
             $quizId = intval($_POST['quiz-id']);
             $creatorId = intval($_POST['creator-id']);
@@ -67,6 +68,7 @@ class QuizController extends BaseController {
             }
         }
 
+        // Envoi des résultats via un fetch AJAX
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
             // Traitement de la soumission du score
             $data = json_decode(file_get_contents('php://input'), true);

@@ -13,7 +13,7 @@ class ConnectionController {
         $success = '';
         
         
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_POST['login'])) {
             
             $email = $_POST['email'];
             $password = $_POST['password'];
@@ -38,15 +38,15 @@ class ConnectionController {
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['user_email'] = $user['email'];
                     $_SESSION['user_role'] = $user['role'];
-    
+
                     // On gère la redirection
                     if ($user['role'] === 'ADMIN') {
                         header ('Location: ./espace-admin');
+                        exit();
                     } else {
                         header ('Location: ./mon-espace');
+                        exit();
                     }
-                    $success = 'connexion réussie';
-                    return $success;
                 }
             }
         }

@@ -1,3 +1,5 @@
+/* INUTILE, redite avec quizView.php */
+
 // On stocke l'identifiant utilisateur dans une variable
 const userId = <?= isset($_SESSION['user_id']) ? intval($_SESSION['user_id']) : '0'; ?>;
 

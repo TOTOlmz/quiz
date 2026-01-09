@@ -8,7 +8,7 @@ use App\Controllers\BaseController;
 use App\Controllers\AccessController;
 use App\Models\AdminModel;
 
-class AdminController extends BaseController {
+class AdminController extends AccessController {
 
     protected array $errors = [];
     protected string $success = '';
@@ -21,8 +21,7 @@ class AdminController extends BaseController {
     public function adminArea() {
 
         // Vérification des accès
-        $accessController = new AccessController();
-        $accessController->checkAccess('ADMIN');
+        $this->checkAccess('ADMIN');
 
         // gestion du formulaire de suspension d'un utilisateur
         if (isset($_POST['suspend-user'])) {
@@ -95,7 +94,7 @@ class AdminController extends BaseController {
             }
         }
 
-
+        // Récupération des signalements
         $this->currentReports = AdminModel::getReports();
         foreach ($this->currentReports as &$report) {
             $report['reporter_pseudo'] = isset($report['reporter_pseudo']) ? htmlspecialchars($report['reporter_pseudo']) : 'Utilisateur non connecté';
@@ -106,7 +105,7 @@ class AdminController extends BaseController {
         $this->nbOfPlayers = AdminModel::getPlayersDate();
 
 
-        // Simplification des appels de variables pour la vue
+        // Simplification des variables pour les appels dans la vue
         $reports = $this->currentReports;
         $suspendedUsers = $this->suspendedUsers;
         $nbQuizzes = $this->nbOfQuizzes;

@@ -24,6 +24,7 @@ class CreatingQuizController extends BaseController {
             $_POST['quiz_id'] = $_GET['id'];
             $this->createQuestion($_POST);
         }
+
         // Si un identifiant de quiz est fourni en URL
         if (isset($_GET['id'])) {
             $intId = intval($_GET['id']);
@@ -49,7 +50,7 @@ class CreatingQuizController extends BaseController {
 
 
 
-
+    // Fonction permettant de créer un quiz en BDD
     public function createQuiz($data) {
         // Logique pour créer un quiz
         if (empty($data['name'])) {
@@ -88,6 +89,7 @@ class CreatingQuizController extends BaseController {
 
     }
 
+    // Fonction permettant de créer une question en BDD
     public function createQuestion($data) {
 
         $quizId = intval($data['quiz_id']);

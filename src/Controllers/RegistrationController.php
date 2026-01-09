@@ -80,9 +80,9 @@ class RegistrationController {
             
         }
         
+        // Appel de la vue
         $errors = $this->errors;
         $success = $this->success;
-        // On charge la vue
         require_once ROOT_PATH . '/src/Views/registrationView.php';
     }
 

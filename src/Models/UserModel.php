@@ -15,18 +15,21 @@ class UserModel extends BaseModel {
         return $stmt ?: null;
     }
 
+    // Vérification de l'unicité d'un email
     public static function emailExists(string $email): bool {
         $sql = 'SELECT COUNT(*) FROM users WHERE email = :email';
         $count = self::fetchColumn($sql, ['email' => $email]);
         return $count > 0;
     }
 
+    // Vérification de l'unicité d'un pseudo
     public static function pseudoExists(string $pseudo): bool {
         $sql = 'SELECT COUNT(*) FROM users WHERE pseudo = :pseudo';
         $count = self::fetchColumn($sql, ['pseudo' => $pseudo]);
         return $count > 0;
     }
 
+    // Création d'un nouvel utilisateur
     public static function createUser(string $pseudo, string $email, string $password, string $role): ?int {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
         $sql = 'INSERT INTO users (pseudo, email, password, picture, role, created_at) VALUES (:pseudo, :email, :password, "default.png", :role, NOW())';
@@ -40,12 +43,14 @@ class UserModel extends BaseModel {
         return $userId ? (int)$userId : null;
     }
 
+    // Mise à jour de la photo de profil d'un utilisateur
     public static function setUserPicture(int $userId, string $picture): ?string {
         $sql = "UPDATE users SET picture = :picture WHERE id = :id LIMIT 1";
         $updated = self::executeQuery($sql, ['picture' => $picture, 'id' => $userId])->rowCount();
         return $updated > 0 ? $picture : null;
     }
 
+    // Mise à jour du score d'un utilisateur
     public static function updateScore(int $score, int $userId): ?int {
         $sql = "UPDATE users SET score = score  + :score WHERE id = :user_id LIMIT 1";
         $stmt = self::executeQuery($sql, ['score' => $score, 'user_id' => $userId]);

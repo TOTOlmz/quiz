@@ -1,6 +1,6 @@
 <?php
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-    Contrôleur gérant l'affichage de l'accueil
+    Contrôleur gérant l'affichage des mentions légales
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 
 namespace App\Controllers;

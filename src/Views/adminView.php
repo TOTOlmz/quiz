@@ -1,7 +1,8 @@
 <div class="centered-div">
     <h1>Page d'administration</h1>
-    <?php require_once __DIR__ . '/components/checks.php'; ?>
+    <?php require_once ROOT_PATH . '/src/Views/components/checks.php'; ?>
 
+    <?php // Section permettant d'afficher les boutons d'appel des overlays ?>
     <div class="admin-menu">
         <span id="players-btn" class="button">Graphique des utilisateurs</span>
         <span id="quizzes-btn" class="button">Graphique des créations</span>
@@ -10,7 +11,10 @@
     </div>    
 </div>
 
+<?php // Section permettant d'afficher les overlays ?>
+
 <div class="overlay admin-overlay">
+    <?php // Section permettant d'afficher les joueurs suspendus ?>
     <div class="pop-up suspended-users-div">
         <span class="new-suspension button">Suspendre un joueur</span>
         <form action="" method="POST" class="new-suspension-form">
@@ -36,7 +40,7 @@
         <span class="close-btn button">Fermer</span>
         
     </div>
-
+    <?php // Section permettant d'afficher les signalements ?>
     <div class="pop-up reports-div">
         <?php if (!empty($reports)): ?>
             <h2>Signalements en attente</h2>
@@ -67,16 +71,17 @@
         <br>
         <span class="close-btn button">Fermer</span>
     </div>
-
+    <?php // Section permettant d'afficher les graphiques ?>
+    <?php // quizzes ?>
     <div class="pop-up stats quizzes-div">
         <h3>Nombre de quizzes créés sur la semaine</h3>
         <canvas id="quizzesChart"></canvas>
         <br>
         <span class="close-btn button">Fermer</span>
     </div>
+    <?php // joueurs ?>
     <div class="pop-up stats players-div">
-    
-        <h3>Nombre d\'utilisateurs inscrits sur la semaine</h3>
+        <h3>Nombre d'utilisateurs inscrits sur la semaine</h3>
         <canvas id="playersChart"></canvas>
         <br>
         <span class="close-btn button">Fermer</span>
@@ -88,7 +93,7 @@
 <script> /* Script lié aux graphiques ChartJS */
 
 
-    // Préparation des variables pour le style des graphiques
+    // récupération d'une variable pour le style des graphiques
     const purple = window.getComputedStyle(document.querySelector('.button')).borderColor;
 
 
@@ -111,9 +116,6 @@
     
     // on convertit l'objet en tableau ordonné selon les labels
     let quizzesByDay = labels.map(label => quizzesCount[label] || 0);
-
-    
-    
     
     const ctxQuizzes = document.getElementById('quizzesChart');
     new Chart(ctxQuizzes, {
@@ -141,6 +143,8 @@
         }
     });
 
+
+    
     // Graphique concernant les joueurs
     const playersData = <?php echo json_encode($nbPlayers); ?>;
     let playersCount = {};

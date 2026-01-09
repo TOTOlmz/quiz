@@ -1,6 +1,6 @@
 <div class="centered-div">
 
-    <?php require_once __DIR__ . '/components/checks.php'; ?>
+    <?php require_once ROOT_PATH . '/src/Views/components/checks.php'; ?>
 
     <h3>Top Quizzes</h3>
     <div class="quizzes-cards">

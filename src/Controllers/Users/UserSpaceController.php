@@ -9,7 +9,7 @@ use App\Controllers\AccessController;
 use App\Models\UserModel;
 use App\Models\QuizModel;
 
-class UserSpaceController extends BaseController {
+class UserSpaceController extends AccessController {
 
     protected array $errors = [];
     protected string $success = '';
@@ -21,8 +21,7 @@ class UserSpaceController extends BaseController {
     public function userSpace() {
 
         // Vérification des accès
-        $accessController = new AccessController();
-        $accessController->checkAccess('USER');
+        $this->checkAccess('USER');
 
         // Récupération des infos de l'utilisateur
         $userId = intval($_SESSION['user_id'] ?? 0);
@@ -51,14 +50,14 @@ class UserSpaceController extends BaseController {
             $this->errors[] = 'Utilisateur non trouvé.';
         }
 
-        // Si tout s'est bien passé on récupère les infos de l'utilisateur
+        // Si tout s'est bien passé on récupère les quizzes de l'utilisateur
         if (empty($this->errors)) {
             $this->quizzes = QuizModel::getQuizByUserId($userId);
         }
+
         // Simplification de l'appel des variables 
         $errors = $this->errors;
         $success = $this->success;
-
         $user = $this->user;
         $quizzes = $this->quizzes;
         // Appel de la vue
@@ -104,7 +103,7 @@ class UserSpaceController extends BaseController {
 
             // Si ca réussit :
             if ($pictureUpload) {
-                // Et si le nom est toujours "default.png"
+                // Et si le nom en bdd est toujours "default.png"
                 if ($user['picture'] !== $newName) {
                     // On met à jour le nom du fichier dans la BDD
                     $updateStatus = UserModel::setUserPicture($userId, $newName);

@@ -1,7 +1,7 @@
 
 
 <div class="quiz-creation">    
-    <?php require_once __DIR__ . '/components/checks.php'; ?>
+    <?php require_once ROOT_PATH . '/src/Views/components/checks.php'; ?>
     <h2>Créer un nouveau quiz</h2>
     <form action="" method="POST" class="question-creation-form">
 
@@ -80,7 +80,7 @@
 
 </script>
 
-<script>
+<script> /* ajustement des largeurs des inputs */
     let select = document.getElementById('category');
     let color = document.getElementById('color');
     let button = document.querySelector('form button[type="submit"]');

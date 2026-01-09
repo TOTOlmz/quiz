@@ -1,6 +1,6 @@
 <div class="centered-div">
 
-    <?php require_once __DIR__ . '/components/checks.php'; ?>
+    <?php require_once ROOT_PATH . '/src/Views/components/checks.php'; ?>
 
     <h2>Mon profil</h2>
     <div class="userspace-section profile-section">

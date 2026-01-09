@@ -8,6 +8,7 @@ use App\Models\BaseModel;
 
 class AdminModel extends BaseModel {
 
+    // Récupération des signalements
     public static function getReports(): array {
         $sql = "SELECT r.id, r.quiz_id, r.creator_id, r.reporter_id, r.title, r.comment, r.created_at,
         c.pseudo AS creator_pseudo, c.email AS creator_email, u.pseudo AS reporter_pseudo, u.email AS reporter_email,
@@ -17,43 +18,47 @@ class AdminModel extends BaseModel {
         return $stmt ?: [];
     }
 
+    // Annulation d'un signalement
     public static function undoReport(int $quizId): ?int {
         $sql = "UPDATE quizzes SET is_reported = 0 WHERE id = :id LIMIT 1";
         $stmt = self::executeQuery($sql, ['id' => $quizId]);
         return $stmt->rowCount() > 0 ? $stmt->rowCount() : null;
     }
+    // Cloture d'un signalement
     public static function closeReport(int $quizId): ?int {
-        $sql = "UPDATE quizzes SET is_reported = 0 WHERE id = :id LIMIT 1";
+        $sql = "UPDATE quizzes SET is_closed = 1 WHERE id = :id LIMIT 1";
         $stmt = self::executeQuery($sql, ['id' => $quizId]);
         return $stmt->rowCount() > 0 ? $stmt->rowCount() : null;
     }
 
+    // Suppression d'un quiz
     public static function deleteQuiz(int $quizId): ?int {
         $sql = "DELETE FROM quizzes WHERE id = :id LIMIT 1";
         $stmt = self::executeQuery($sql, ['id' => $quizId]);
         return $stmt->rowCount() > 0 ? $stmt->rowCount() : null;
     }
 
+    // Récupération des utilisateurs suspendus
     public static function getSuspendedUsers(): array {
         $sql = "SELECT id, pseudo, email FROM users WHERE is_suspended = 1";
         $stmt = self::fetchAll($sql);
         return $stmt ?: [];
     }
 
-    // Fonction permettant de suspendre un utilisateur par son ID
+    // Suspendre un utilisateur par son ID
     public static function suspendUserById(int $userId): int {
         $sql = "UPDATE users SET is_suspended = 1 WHERE id = :id LIMIT 1";
         $stmt = self::executeQuery($sql, ['id' => $userId]);
         return $stmt->rowCount() > 0 ? $stmt->rowCount() : 0;
     }
-    // Fonction permettant de suspendre un utilisateur par son Pseudo
+    // Suspendre un utilisateur par son Pseudo
     public static function suspendUserByPseudo(string $userPseudo): int {
         $sql = "UPDATE users SET is_suspended = 1 WHERE pseudo = :pseudo LIMIT 1";
         $stmt = self::executeQuery($sql, ['pseudo' => $userPseudo]);
         return $stmt->rowCount() > 0 ? $stmt->rowCount() : 0;
     }
 
-    // Fonction permettant de suspendre un utilisateur par son Pseudo
+    // Suspendre un utilisateur par son Pseudo
     public static function unsuspendUser(int $userId): int {
         $sql = "UPDATE users SET is_suspended = 0 WHERE id = :id LIMIT 1";
         $stmt = self::executeQuery($sql, ['id' => $userId]);
