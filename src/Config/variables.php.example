@@ -6,7 +6,6 @@
     INSTRUCTIONS:
     1. Copiez ce fichier et renommez-le en "variables.php"
     2. Remplacez les valeurs par vos propres identifiants
-    3. Le fichier variables.php ne sera jamais versionné (voir .gitignore)
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 
 // Configuration de la base de données
@@ -21,8 +20,8 @@ $_ENV['DB_CHARSET'] = 'utf8mb4';
 $_ENV['DB_TIMEZONE'] = 'Europe/Paris';
 
 // Configuration SMTP Hostinger
-$_ENV['SMTP_HOST'] = 'smtp.hostinger.com';
-$_ENV['SMTP_PORT'] = '587';
-$_ENV['SMTP_USER'] = 'votre-email@votredomaine.com'; // Remplacez par votre email Hostinger
-$_ENV['SMTP_PASS'] = 'votre-mot-de-passe'; // Remplacez par votre mot de passe email
-$_ENV['SMTP_FROM'] = 'votre-email@votredomaine.com'; // Email d'envoi par défaut
+$_ENV['SMTP_HOST'] = 'votre.lien.stmp';
+$_ENV['SMTP_PORT'] = 'XXX';
+$_ENV['SMTP_USER'] = 'exemple@adresse.mail'; // Remplacez par votre email
+$_ENV['SMTP_PASS'] = 'mot-de-passe'; // Remplacez par votre mot de passe email
+$_ENV['SMTP_FROM'] = 'exemple@adresse.mail'; // Email d'envoi par défaut
