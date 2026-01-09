@@ -56,7 +56,7 @@ class AdminModel extends BaseModel {
     // Fonction permettant de suspendre un utilisateur par son Pseudo
     public static function unsuspendUser(int $userId): int {
         $sql = "UPDATE users SET is_suspended = 0 WHERE id = :id LIMIT 1";
-        $stmt = self::executeQuery($sql, ['id' => $$userId]);
+        $stmt = self::executeQuery($sql, ['id' => $userId]);
         return $stmt->rowCount() > 0 ? $stmt->rowCount() : 0;
     }
 

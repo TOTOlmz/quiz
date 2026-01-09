@@ -14,8 +14,8 @@
     <div class="pop-up suspended-users-div">
         <span class="new-suspension button">Suspendre un joueur</span>
         <form action="" method="POST" class="new-suspension-form">
-            <input type="text" name="suspension-id" placeholder="ID du joueur à suspendre">
-            <input type="text" id="suspension-pseudo" placeholder="Pseudo du joueur à suspendre">
+            <input type="number" name="suspension-id" placeholder="ID du joueur">
+            <input type="text" name="suspension-pseudo" placeholder="Pseudo du joueur">
             <button type="submit" name="suspend-user" class="button">Suspendre le joueur</button>
         </form>
         <h3>Liste des joueurs actuellement suspendus</h3>

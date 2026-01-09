@@ -26,12 +26,17 @@ class AdminController extends BaseController {
 
         // gestion du formulaire de suspension d'un utilisateur
         if (isset($_POST['suspend-user'])) {
-            $userId = trim($_POST['suspension-id']);
-            $userPseudo = trim($_POST['suspension-pseudo']);
-            if (intval($userId) !== 0) {
-                $idResult = AdminModel::suspendUserById($userId);
-                $pseudoResult = AdminModel::suspendUserByPseudo($userPseudo);
-                if ($idResult || $pseudoResult) {
+            $userId = isset($_POST['suspension-id']) ? trim($_POST['suspension-id']) : 0;
+            $userPseudo = isset($_POST['suspension-pseudo']) ? trim($_POST['suspension-pseudo']) : '';
+            if (intval($userId) !== 0 || strlen($userPseudo) > 0) {
+                if ($userId) {
+                    $idResult = AdminModel::suspendUserById($userId);
+                }
+                if ($userPseudo) {
+
+                    $pseudoResult = AdminModel::suspendUserByPseudo($userPseudo);
+                }
+                if (isset($idResult) || isset($pseudoResult)) {
                     $this->success = 'Le joueur a été suspendu avec succès.';
                 } else {
                     $this->errors[] = 'Erreur lors de la suspension du joueur. Veuillez vérifier l\'ID.';
@@ -54,7 +59,7 @@ class AdminController extends BaseController {
                 $this->errors[] = 'L\'ID du joueur doit être valide.';
             }
         }
-        
+
         // Gestion du formulaire d'annulation d'un signalement
         if (isset($_POST['undo-report'])) {
             $quizId = trim($_POST['quiz-id']);
@@ -100,6 +105,8 @@ class AdminController extends BaseController {
         $suspendedUsers = $this->suspendedUsers;
         $nbQuizzes = $this->nbOfQuizzes;
         $nbPlayers = $this->nbOfPlayers;
+        $errors = $this->errors;
+        $success = $this->success;
         // Appel de la vue
         require_once __DIR__ . '/../../Views/adminView.php';
     }
