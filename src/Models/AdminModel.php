@@ -23,7 +23,6 @@ class AdminModel extends BaseModel {
     public static function getNumberOfPlayers(): int {
         $sql = "SELECT COUNT(*) FROM users";
         $stmt = self::count($sql);
-        print_r($stmt);
         return $stmt ? (int)$stmt : 0;
     }
 

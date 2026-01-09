@@ -3,15 +3,20 @@
     <?php require_once __DIR__ . '/components/checks.php'; ?>
 
     <div class="reports">
-        <?php foreach($reports as $report): ?>
-            <div class="report-card">
-                <h3>Quiz signalé : <?= htmlspecialchars($report['name'] . ' #' . $report['id']) ?></h3>
-                <p><strong>Description :</strong> <?= nl2br(htmlspecialchars($report['description'])) ?></p>
-                <p><strong>Créé par :</strong> <?= htmlspecialchars($report['pseudo']) ?> (<?= htmlspecialchars($report['email']) ?>)</p>
-                <p><strong>Date de création :</strong> <?= htmlspecialchars($report['created_at']) ?></p>
-                <a href="/quiz/public/quiz/<?= htmlspecialchars($report['id']) ?>" class="button">Voir le quiz</a>
-            </div>
-        <?php endforeach; ?>
+        <?php if (!empty($reports)): ?>
+            <h2>Signalements en attente</h2>
+            <?php foreach($reports as $report): ?>
+                <div class="report-card">
+                    <h3>Quiz signalé : <?= htmlspecialchars($report['name'] . ' #' . $report['id']) ?></h3>
+                    <p><strong>Description :</strong> <?= nl2br(htmlspecialchars($report['description'])) ?></p>
+                    <p><strong>Créé par :</strong> <?= htmlspecialchars($report['pseudo']) ?> (<?= htmlspecialchars($report['email']) ?>)</p>
+                    <p><strong>Date de création :</strong> <?= htmlspecialchars($report['created_at']) ?></p>
+                    <a href="/quiz/public/quiz/<?= htmlspecialchars($report['id']) ?>" class="button">Voir le quiz</a>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <h2>Aucun signalement en attente</h2>
+        <?php endif; ?>
     </div>
 
     <div class="stats">

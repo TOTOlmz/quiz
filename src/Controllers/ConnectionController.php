@@ -39,8 +39,8 @@ class ConnectionController {
                     $_SESSION['user_role'] = $user['role'];
     
                     // On gère la redirection
-                    if ($user['roles'] === 'ADMIN') {
-                        header ('Location: ./admin');
+                    if ($user['role'] === 'ADMIN') {
+                        header ('Location: ./espace-admin');
                     } else {
                         header ('Location: ./mon-espace');
                     }
