@@ -24,7 +24,7 @@ class QuizModel extends BaseModel {
     }
 
     public static function getAllQuizzes(): ?array {
-        $sql = "SELECT * FROM quizzes";
+        $sql = "SELECT * FROM quizzes WHERE is_reported = 0";
         $stmt = self::fetchAll($sql);
         return $stmt ?: null;
     }
@@ -42,7 +42,7 @@ class QuizModel extends BaseModel {
     }
 
     public static function getAllCategories(): ?array {
-        $sql = "SELECT DISTINCT category FROM quizzes WHERE category IS NOT NULL ORDER BY category";
+        $sql = "SELECT DISTINCT category FROM quizzes WHERE is_reported = 0 AND category IS NOT NULL ORDER BY category";
         $stmt = self::fetchAllColumn($sql);
         return $stmt ?: null;
     }

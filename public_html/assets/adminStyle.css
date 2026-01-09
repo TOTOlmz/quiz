@@ -1,0 +1,68 @@
+.admin-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+.report-card {
+    width: fit-content;
+    border: solid 1px var(--purple);
+    box-shadow: 2;
+    border-radius: 5px;
+    padding: 0;
+    margin: 10px auto;
+    background-color: var(--white);
+}
+.report-card .card-link {
+    display: grid;
+    padding: 20px;
+    padding-bottom: 25px;
+    text-decoration: none;
+    color: var(--font-color-black);
+}
+
+.reports-div, .suspended-users-div, .quizzes-div, .players-div {
+    display: none;
+}
+
+.close-btn {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.suspended-users-div { position: relative; }
+
+.suspended-user-form {
+    border: solid 1px var(--purple);
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px auto;
+    background-color: var(--white);
+    width: fit-content;
+}
+
+.new-suspension-form {
+    display: none;
+    background-color: var(--white);
+    border: solid 1px var(--purple);
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px auto;
+    width: fit-content;
+    position: absolute;
+    justify-content: center;
+    align-content: center;
+    z-index: 20;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 2px 2px 200px var(--lila), -2px -2px 200px var(--lila);
+}
+
+.new-suspension-form input {
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px var(--purple);
+    margin: 2px;
+}

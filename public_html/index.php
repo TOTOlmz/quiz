@@ -68,6 +68,8 @@ $uri = '/'.ltrim($uri, '/'); // garantit un slash initial
     <link rel="stylesheet" href="./assets/style.css">
     <link rel="stylesheet" href="./assets/quizzesStyle.css">
     <link rel="stylesheet" href="./assets/popupStyle.css">
+    
+    <link rel="stylesheet" href="./assets/adminStyle.css">
     <title>Ze Quiz</title>
 </head>
 <body>

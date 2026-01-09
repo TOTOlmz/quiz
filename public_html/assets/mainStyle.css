@@ -45,6 +45,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 1px 10px var(--black);
     > a{
         text-decoration: none;
         color: var(--font-color-black);
@@ -86,6 +87,7 @@ footer {
     width: 100%;
     font-family: Arial, sans-serif;
     margin-top: auto;
+    box-shadow: 0 -1px 10px var(--black);
     a {
         color: var(--font-color-white);
         text-decoration: none;

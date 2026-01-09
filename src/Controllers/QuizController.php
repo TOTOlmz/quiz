@@ -38,17 +38,16 @@ class QuizController extends BaseController {
         if (isset($_POST['report-title'])) {
             $quizId = intval($_POST['quiz-id']);
             $creatorId = intval($_POST['creator-id']);
-            $reporterId = intval($_POST['reporter-id']);
+            $reporterId = isset($_POST['reporter-id']) ? intval($_POST['reporter-id']) : 0;
             $title = htmlspecialchars(trim($_POST['report-title']));
             $comment = htmlspecialchars(trim($_POST['comment']));
 
             $reportParams = [
-                'quiz-id' => $quizId,
-                'creator-id' => $creatorId,
-                'reporter-id' => $reporterId,
+                'quiz_id' => $quizId,
+                'creator_id' => $creatorId,
+                'reporter_id' => $reporterId,
                 'title' => $title,
-                'comment' => $comment,
-                'created_at' => date('Y-m-d H:i:s')
+                'comment' => $comment
             ];
 
             $reportCreated = ReportModel::createReport($reportParams);
@@ -60,9 +59,9 @@ class QuizController extends BaseController {
 
             $quizReported = QuizModel::reportQuiz($quizId);
             if (!$quizReported) {
-                $this->errors[] = 'Erreur lors du signalement du quiz.';
+                $this->errors[] = 'Erreur lors du signalement.';
             } else {
-                $this->success = 'Quiz signalé avec succès.';
+                $this->success = 'Signalement envoyé.';
             }
         }
 

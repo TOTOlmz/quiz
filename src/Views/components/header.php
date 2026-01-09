@@ -1,3 +1,7 @@
+<?php // navbar permettant la navigation 
+ob_start();
+?>
+
 <nav class="navbar">
     <a href="./" class="brand-area">
         <svg
