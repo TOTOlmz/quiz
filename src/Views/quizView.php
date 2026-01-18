@@ -56,10 +56,6 @@
     
     // On initialise les variables du quiz
     const quiz = <?=  isset($quiz) ? json_encode($quiz) : 'null'; ?>;
-    let correctAnswers = [];
-    quiz.questions.forEach(q => {
-        correctAnswers.push(q.answer_A);        // On stocke la réponse correcte (answer_A en BDD)
-    });
     let currentQuestionIndex = 0;
     const nbOfQuestions = quiz.questions.length;
     let correctAnswer = '';
@@ -86,20 +82,14 @@
 
         return cQuestion = {
             Q: q['question'],
-            A: q['answer_A'],
-            B: q['answer_B'],
-            C: q['answer_C'],
-            D: q['answer_D'],
-            correct: correctAnswers[index]
+            A: q['answers'][0],
+            B: q['answers'][1],
+            C: q['answers'][2],
+            D: q['answers'][3],
+            correct: q['correct_answer']
         };
     }
 
-    function shuffle(array) {
-        array.sort(() => Math.random() - 0.5);
-        return array;
-    }
-    console.log(quiz.questions)
-    console.log(shuffle(quiz.questions));
 
     // Fonction permettant de mettre à jour la question du quiz
     function updateQuestion (q, aA, aB, aC, aD, questionArray) {
@@ -120,10 +110,10 @@
         aD.querySelector('p').textContent = questionArray['D'];
 
         // On préscise la bonne réponse en donnant un attribut
-        if (questionArray['correct'] === 'A') { aA.setAttribute('correct', '1'); }
-        else if (questionArray['correct'] === 'B') { aB.setAttribute('correct', '1'); }
-        else if (questionArray['correct'] === 'C') { aC.setAttribute('correct', '1'); }
-        else if (questionArray['correct'] === 'D') { aD.setAttribute('correct', '1'); }
+        if (questionArray['correct'] === questionArray['A']) { aA.setAttribute('correct', '1'); }
+        else if (questionArray['correct'] === questionArray['B']) { aB.setAttribute('correct', '1'); }
+        else if (questionArray['correct'] === questionArray['C']) { aC.setAttribute('correct', '1'); }
+        else if (questionArray['correct'] === questionArray['D']) { aD.setAttribute('correct', '1'); }
 
         // On masque les réponses vides
         if (aA.querySelector('p').textContent === '') { aA.style.opacity = 0; }

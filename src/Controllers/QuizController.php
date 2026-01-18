@@ -33,6 +33,20 @@ class QuizController extends BaseController {
                 $this->currentQuiz = $getQuiz;
                 $this->currentQuiz['questions'] = QuizModel::getQuestionsByQuizId($intId);
                 $this->nbOfQuestions = count($this->currentQuiz['questions']);
+
+                
+                // Pour chaque question :
+                foreach ($this->currentQuiz['questions'] as &$question) {
+                    // On stocke la bonne réponse dans une clef "correct_answers"
+                    $question['correct_answer'] = $question['answer_A'];
+                    // On mélange les réponses via la fonction shuffle
+                    $answers = [ $question['answer_A'], $question['answer_B'], $question['answer_C'], $question['answer_D'] ];
+                    shuffle($answers);
+                    $question['answers'] = $answers;
+                    unset($question['answer_A'], $question['answer_B'], $question['answer_C'], $question['answer_D']);
+                }
+                unset($question); // on casse la référence au dernier élément
+                
             }
 
         }
