@@ -1,6 +1,6 @@
 <div class="centered-div">
     
-    <?php require_once ROOT_PATH . '/wsrc/Views/components/checks.php'; ?>
+    <?php require_once ROOT_PATH . '/src/Views/components/checks.php'; ?>
 
 
     <?php // Section permettant de lister les catégories ?>

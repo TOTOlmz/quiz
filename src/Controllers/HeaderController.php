@@ -20,6 +20,7 @@ class HeaderController {
             }
         }
 
+
         // On charge la vue
         require ROOT_PATH . '/src/Views/components/header.php';
     }
