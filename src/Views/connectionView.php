@@ -3,7 +3,7 @@
 
     <div class="connection">
         <?php require_once ROOT_PATH . '/src/Views/components/checks.php'; ?>
-        <form class="connection-form" method="POST">
+        <form class="connection-form" action="" method="POST">
             <h2>Connexion</h2>
             <input type="email" id="email" name="email" placeholder="Email" required>
             <input type="password" id="password" name="password" placeholder="Mot de passe" required>

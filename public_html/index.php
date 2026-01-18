@@ -59,11 +59,11 @@ if (stripos($path, $base) === 0) {
 $uri = '/'.ltrim($uri, '/'); // garantit un slash initial
 // echo 'uri = ' . $uri . '<br>Path = ' . $path . '<br>Base = ' . $base . '<br>';
 
-// On gère les actions de redirection avant le HTML
+// Gestion des redirections avant le rendu des pages
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (strpos($uri, '/connexion') === 0) { $connectionController->connection(); }
-    else if (strpos($uri, '/deconnexion') === 0) { $connectionController->logout(); }
     else if (strpos($uri, '/inscription') === 0) { $registrationController->registration(); }
+    else if (strpos($uri, '/deconnexion') === 0) { $connectionController->logout(); }
 }
 ?>
 <!DOCTYPE html>
@@ -90,14 +90,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php
         // On gère le routing
 
-            if (strpos($uri, '/deconnexion') === 0) { 
-                $connectionController->logout();
-            }
-        
-
-            if ($uri == '/' || $uri == '/deconnexion') { $home->homeArea(); }
-            else if (strpos($uri, '/connexion') === 0) { $connectionController->connection(); }
-            else if (strpos($uri, '/inscription') === 0) { $registrationController->registration(); }
+            if ($uri == '/') { $home->homeArea(); }
+            else if (strpos($uri, '/connexion') === 0) { $connectionController->connectionPage(); }
+            else if (strpos($uri, '/inscription') === 0) { $registrationController->registrationPage(); }
             else if (strpos($uri, '/espace-admin') === 0) { $adminController->adminArea(); }
             else if (strpos($uri, '/mon-espace') === 0) { $userSpaceController->userSpace(); }
 

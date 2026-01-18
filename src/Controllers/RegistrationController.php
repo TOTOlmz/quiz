@@ -70,8 +70,6 @@ class RegistrationController extends BaseController{
                             $message = str_replace('{{pseudo}}', $user['pseudo'], $message);
                             $message = str_replace('{{email}}', $user['email'], $message);
 
-                            echo $_ENV['SMTP_PASS'] . 'avec comme id ' . $_ENV['SMTP_USER'];
-
                             // On envoie un mail de bienvenue
                             $this->mailUser($user['email'], $object, $message);
 
@@ -92,18 +90,19 @@ class RegistrationController extends BaseController{
             }
             
         }
-        
-        // Appel de la vue
-        $errors = $this->errors;
-        $success = $this->success;
-        require_once ROOT_PATH . '/src/Views/registrationView.php';
     }
 
     // Fonction permettant de vérifier la robustesse du mot de passe
     private function passwordCheck($password) {
-    return strlen($password) >= 8 &&        // On vérifie la longueur minimale
-    strtolower($password) !== $password &&  // La presence d'une minuscule
-    strtoupper($password) !== $password &&  // La presence d'une majuscule
-    preg_match('/[0-9]/', $password);       // La presence d'un chiffre
-}
+        return strlen($password) >= 8 &&        // On vérifie la longueur minimale
+        strtolower($password) !== $password &&  // La presence d'une minuscule
+        strtoupper($password) !== $password &&  // La presence d'une majuscule
+        preg_match('/[0-9]/', $password);       // La presence d'un chiffre
+    }
+
+    public function registrationPage() {
+        $errors = $this->errors;
+        $success = $this->success;
+        require_once ROOT_PATH . '/src/Views/registrationView.php';
+    }
 }

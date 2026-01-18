@@ -20,10 +20,14 @@
         <?php if ($connected): ?>
             <?php if ($admin): ?>
                     <a class="button nav-btn" href="./espace-admin">Espace admin</a>
-                    <a class="button nav-btn" href="./deconnexion">Déconnexion</a>
+                    <form method="POST" action="./deconnexion">
+                        <button class="button nav-btn" type="submit">Déconnexion</button>
+                    </form>
             <?php else: ?>
                     <a class="button nav-btn" href="./mon-espace">Mon espace</a>
-                    <a class="button nav-btn" href="./deconnexion">Déconnexion</a>
+                    <form method="POST" action="./deconnexion">
+                        <button class="button nav-btn" type="submit">Déconnexion</button>
+                    </form>
             <?php endif; ?>
         <?php else: ?>
                 <a class="button nav-btn" href="./connexion">Connexion</a>
@@ -36,7 +40,22 @@
     const logo = document.querySelector('.navbar-logo');
     const logoPath = document.querySelector('.navbar-logo path');
     const shape = document.querySelector('.logo-bg-circle');
-    const colors = [ '#ffffff', '#CAFFD0', '#C9E4E7', '#ff5656', '#8f3cfa', '#52dcff', '#fbff00', '#ffbb00', '#0004ff' ];
+    const colors = [ 
+        '#ffffff',
+        '#CAFFD0',
+        '#C9E4E7',
+        '#ff5656',
+        '#8f3cfa',
+        '#52dcff',
+        '#fbff00',
+        '#ffbb00',
+        '#0004ff',
+        '#00ff00',
+        '#668a80',
+        '#ffe100',
+        '#9266a4',
+        '#b7ff00'
+    ];
     let rand = 0;
     
     shape.style.height = document.querySelector('.navbar').clientHeight + 'px';
@@ -51,7 +70,7 @@
         setTimeout(() => {
             logoPath.style.fill = 'var(--black)';
             shape.style.transform = 'translate(-100%, 0%)';
-        }, 300);
+        }, 100);
     });
 
 
