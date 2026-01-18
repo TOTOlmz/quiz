@@ -67,8 +67,8 @@ class QuizModel extends BaseModel {
 
     // Création d'une question
     public static function createQuestion(array $params): ?int {
-        $sql = "INSERT INTO questions (quiz_id, question, nb_of_answers, correct_answer, answer_A, answer_B, answer_C, answer_D) 
-                VALUES (:quiz_id, :question, :nb_of_answers, :correct_answer, :answer_A, :answer_B, :answer_C, :answer_D)";
+        $sql = "INSERT INTO questions (quiz_id, question, nb_of_answers, answer_A, answer_B, answer_C, answer_D) 
+                VALUES (:quiz_id, :question, :nb_of_answers, :answer_A, :answer_B, :answer_C, :answer_D)";
         $stmt = self::lastInsert($sql, $params);
         return $stmt ?: null;
     }

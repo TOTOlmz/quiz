@@ -94,12 +94,11 @@ class CreatingQuizController extends BaseController {
 
         $quizId = intval($data['quiz_id']);
         $question = trim($data['question']);
-        $correctAnswer = $data['correct_answer'];
-        $answerA = trim($data['answer_A']);
+        $correctAnswer = trim($data['answer_A']);
         $answerB = trim($data['answer_B']);
         $answerC = trim($data['answer_C']);
         $answerD = trim($data['answer_D']);
-        $allAnswers = [$answerA, $answerB, $answerC, $answerD];
+        $allAnswers = [$correctAnswer, $answerB, $answerC, $answerD];
 
 
         // Logique pour créer une question
@@ -108,14 +107,15 @@ class CreatingQuizController extends BaseController {
         }
 
         // On vérifie que des réponses ont été soumises
-        if (empty($answerA) && empty($answerB) && empty($answerC) && empty($answerD)) {
-            $this->errors[] = 'Merci de renseigner des réponses';
+        if (empty($correctAnswer)) {
+            $this->errors[] = 'Merci de renseigner la réponse correcte';
+        }
+        if (empty($answerB) && empty($answerC) && empty($answerD)) {
+            $this->errors[] = 'Merci de renseigner plusieurs choix de réponses';
         }
 
         if (empty($this->errors)) {
             // On supprime les réponses vides
-
-            // On filtre toutes les réponses avec une boucle foreach
             $answers = [];
             foreach ($allAnswers as $a) {
                 if (!empty($a)) {
@@ -137,11 +137,10 @@ class CreatingQuizController extends BaseController {
                 'quiz_id' => $quizId,
                 'question' => $question,
                 'nb_of_answers' => $nbOfAnswers,
-                'correct_answer' => $correctAnswer,
-                'answer_A' => $answers[0],
-                'answer_B' => $answers[1] ?? '',
-                'answer_C' => $answers[2] ?? '',
-                'answer_D' => $answers[3] ?? ''
+                'answer_A' => $correctAnswer,
+                'answer_B' => $answers[0] ?? '',
+                'answer_C' => $answers[1] ?? '',
+                'answer_D' => $answers[2] ?? ''
             ]);
 
             if ($questionId) {

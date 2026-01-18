@@ -39,18 +39,10 @@
             
             <textarea id="question" name="question" placeholder="question" required></textarea>
             <br>
-            <input type="text" id="answer_A" name="answer_A" placeholder="Réponse A">
-            <input type="text" id="answer_B" name="answer_B" placeholder="Réponse B">
-            <input type="text" id="answer_C" name="answer_C" placeholder="Réponse C">
-            <input type="text" id="answer_D" name="answer_D" placeholder="Réponse D">
-            <br>
-            <select id="correct_answer" name="correct_answer" required>
-                <option value="" selected hidden>Réponse correcte</option>
-                <option value="A">Réponse A</option>
-                <option value="B">Réponse B</option>
-                <option value="C">Réponse C</option>
-                <option value="D">Réponse D</option>
-            </select>
+            <input type="text" id="answer_A" class="correct" name="answer_A" placeholder="Réponse correcte" required>
+            <input type="text" id="answer_B" name="answer_B" placeholder="Autre réponse">
+            <input type="text" id="answer_C" name="answer_C" placeholder="Autre réponse">
+            <input type="text" id="answer_D" name="answer_D" placeholder="Autre réponse">
 
             <button type="submit" name="create_question" class="button">Créer la question</button>
         </form>

@@ -71,7 +71,7 @@ div.question-creation, div.quiz-creation {
     border: solid 1px var(--purple);
 }
 
-form.question-creation-form input, form.question-creation-form textarea, form.question-creation-form select {
+form.question-creation-form input, form.question-creation-form textarea {
     padding: 10px;
     width: 90%;
     border-radius: 5px;
@@ -79,7 +79,9 @@ form.question-creation-form input, form.question-creation-form textarea, form.qu
     margin: 2px;
 }
 
-
+form.question-creation-form input.correct {
+    background-color: var(--green);
+}
 
 div.category-cards {
     padding: 10px;

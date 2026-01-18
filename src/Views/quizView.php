@@ -56,6 +56,10 @@
     
     // On initialise les variables du quiz
     const quiz = <?=  isset($quiz) ? json_encode($quiz) : 'null'; ?>;
+    let correctAnswers = [];
+    quiz.questions.forEach(q => {
+        correctAnswers.push(q.answer_A);        // On stocke la réponse correcte (answer_A en BDD)
+    });
     let currentQuestionIndex = 0;
     const nbOfQuestions = quiz.questions.length;
     let correctAnswer = '';
@@ -86,9 +90,16 @@
             B: q['answer_B'],
             C: q['answer_C'],
             D: q['answer_D'],
-            correct: q['correct_answer']
+            correct: correctAnswers[index]
         };
     }
+
+    function shuffle(array) {
+        array.sort(() => Math.random() - 0.5);
+        return array;
+    }
+    console.log(quiz.questions)
+    console.log(shuffle(quiz.questions));
 
     // Fonction permettant de mettre à jour la question du quiz
     function updateQuestion (q, aA, aB, aC, aD, questionArray) {

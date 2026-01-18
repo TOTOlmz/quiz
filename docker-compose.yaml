@@ -69,7 +69,7 @@ services:
       SMTP_HOST: smtp.hostinger.com
       SMTP_PORT: 465
       SMTP_USER: contact@zequiz.net
-      SMTP_PASS: SuperMDP8!
+      SMTP_PASS: SuperMdp8!
       SMTP_FROM: contact@zequiz.net
 
 # Volumes persistants

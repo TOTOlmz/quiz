@@ -8,13 +8,17 @@ namespace App\Controllers;
 use App\Models\ConnectionModel;
 use App\Models\UserModel;
 use PDOException;
+use Symfony\Component\Mailer\Messenger\SendEmailMessage;
 
-class RegistrationController {
+class RegistrationController extends BaseController{
     
     protected array $errors = [];
     protected string $success = '';
     
     public function registration() {
+
+        $object = 'Bienvenue sur Ze Quiz !';
+        $message = file_get_contents(ROOT_PATH . '/src/Views/mailsTemplates/registrationEmail.php');
 
         
         // Si le formulaire est soumis
@@ -61,7 +65,16 @@ class RegistrationController {
                             $_SESSION['user_id'] = $user['id'];
                             $_SESSION['user_email'] = $user['email'];
                             $_SESSION['user_role'] = $user['role'];
-                            
+
+                            // Préparation du message de bienvenue
+                            $message = str_replace('{{pseudo}}', $user['pseudo'], $message);
+                            $message = str_replace('{{email}}', $user['email'], $message);
+
+                            echo $_ENV['SMTP_PASS'] . 'avec comme id ' . $_ENV['SMTP_USER'];
+
+                            // On envoie un mail de bienvenue
+                            $this->mailUser($user['email'], $object, $message);
+
                             $this->success = 'Compte créé avec succès !';
                         } else {
                             $this->errors[] = 'Erreur lors de la récupération des données utilisateur';

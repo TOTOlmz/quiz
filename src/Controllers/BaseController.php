@@ -12,11 +12,9 @@ use Symfony\Component\Mailer\Transport;
 
 class BaseController {
 
-    //(!A FAIRE!) corriger le fichier legalcontroller.php pour virer le mailer
-
     protected array $errors = [];
     protected string $success = '';
-    protected MailerInterface $mailer;
+    protected MailerInterface $mailer; // instance de MailerInterface pour l'envoi d'emails
 
     // Fonction permettant d'initialiser le mailer avec la configuration SMTP
     public function __construct() {
@@ -34,13 +32,31 @@ class BaseController {
         $this->mailer = new Mailer($transport);
     }
 
-    // Fonction d'envoi d'email via symfony/mailer
-    protected function sendEmail($name, $email, $messageContent) {
+    // Fonction d'envoi d'email pour contact@zequiz.net
+    protected function mailZequiz($name, $email, $messageContent) {
         $emailMessage = (new Email())
             ->from($_ENV['SMTP_FROM']) // Utilise l'email configuré dans variables.php
             ->to($_ENV['SMTP_FROM'])
             ->subject('Demande de contact')
             ->text("Nom: $name\nEmail: $email\nMessage: $messageContent");
+
+        try {
+            $this->mailer->send($emailMessage);
+            $this->success = 'Votre message a été envoyé avec succès !';
+        } catch (\Exception $e) {
+            $this->errors[] = 'Erreur lors de l\'envoi du message : ' . $e->getMessage();
+        }
+    }
+
+
+    
+    // Fonction d'envoi d'email à un utilisateur
+    protected function mailUser($email, $object, $messageContent) {
+        $emailMessage = (new Email())
+            ->from($_ENV['SMTP_FROM']) // Utilise l'email configuré dans variables.php
+            ->to($email)
+            ->subject($object)
+            ->text($messageContent);
 
         try {
             $this->mailer->send($emailMessage);

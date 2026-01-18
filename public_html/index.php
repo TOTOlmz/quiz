@@ -88,7 +88,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="main">
         <?php
-        // On gère le routing 
+        // On gère le routing
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                if (strpos($uri, '/connexion') === 0) { $connectionController->connection(); }
+                else if (strpos($uri, '/deconnexion') === 0) { $connectionController->logout(); }
+                else if (strpos($uri, '/inscription') === 0) { $registrationController->registration(); }
+            }
+
             if ($uri == '/') { $home->homeArea(); }
             else if (strpos($uri, '/espace-admin') === 0) { $adminController->adminArea(); }
             else if (strpos($uri, '/mon-espace') === 0) { $userSpaceController->userSpace(); }
