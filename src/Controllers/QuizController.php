@@ -41,9 +41,12 @@ class QuizController extends BaseController {
                     $question['correct_answer'] = $question['answer_A'];
                     // On mélange les réponses via la fonction shuffle
                     $answers = [ $question['answer_A'], $question['answer_B'], $question['answer_C'], $question['answer_D'] ];
+                    
                     // On élimine les réponses vides
                     $answers = array_filter($answers);
+                    // Et on mélange des réponses
                     shuffle($answers);
+
                     $question['answers'] = $answers;
                     unset($question['answer_A'], $question['answer_B'], $question['answer_C'], $question['answer_D']);
                 }

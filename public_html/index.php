@@ -64,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (strpos($uri, '/connexion') === 0) { $connectionController->connection(); }
     else if (strpos($uri, '/inscription') === 0) { $registrationController->registration(); }
     else if (strpos($uri, '/deconnexion') === 0) { $connectionController->logout(); }
+    else if (strpos($uri, '/creer-un-quiz') === 0 && isset($_POST['create_quiz'])) { $creatingQuizController->createQuiz($_POST); }
 }
 ?>
 <!DOCTYPE html>

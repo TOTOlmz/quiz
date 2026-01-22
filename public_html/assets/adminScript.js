@@ -2,6 +2,10 @@
 // Récupération de la div d'overlay
 const adminOverlay = document.querySelector('.admin-overlay');
 
+// Pour la gestion des quizzes
+const quizzesDiv = document.querySelector('.edit-quizzes-div');
+const quizzesBtn = document.getElementById('edit-quizzes-btn');
+
 // Pour la gestion des utilisateurs
 const usersDiv = document.querySelector('.suspended-users-div');
 const usersBtn = document.getElementById('suspended-users-btn');
@@ -16,6 +20,10 @@ const playersChartDiv = document.querySelector('.players-div');
 const playersChartBtn = document.getElementById('players-btn');
 
 // listeners pour ouvrir et fermer les overlays
+quizzesBtn.addEventListener('click', () => {
+    adminOverlay.style.display = 'flex';
+    quizzesDiv.style.display = 'block';
+});
 usersBtn.addEventListener('click', () => {
     adminOverlay.style.display = 'flex';
     usersDiv.style.display = 'block';
@@ -37,6 +45,7 @@ playersChartBtn.addEventListener('click', () => {
 adminOverlay.addEventListener('click', (event) => {
     if (event.target === adminOverlay) {
         adminOverlay.style.display = 'none';
+        quizzesDiv.style.display = 'none';
         usersDiv.style.display = 'none';
         reportsDiv.style.display = 'none';
         quizzesChartDiv.style.display = 'none';
@@ -47,6 +56,7 @@ const closeButtons = document.querySelectorAll('.close-btn');
 closeButtons.forEach(button => {
     button.addEventListener('click', () => {
         adminOverlay.style.display = 'none';
+        quizzesDiv.style.display = 'none';
         usersDiv.style.display = 'none';
         reportsDiv.style.display = 'none';
         quizzesChartDiv.style.display = 'none';

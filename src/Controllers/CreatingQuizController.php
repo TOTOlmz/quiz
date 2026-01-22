@@ -16,9 +16,9 @@ class CreatingQuizController extends BaseController {
     public function creatingQuizArea() {
 
         // Si le formulaire de création de quiz est soumis
-        if (isset($_POST['create_quiz'])) {
-            $this->createQuiz($_POST);
-        }
+        // Cela est géré avant l'appel de la vue
+
+
         // Si le formulaire de création de question est soumis
         if (isset($_POST['create_question']) && isset($_GET['id'])) {
             $_POST['quiz_id'] = $_GET['id'];
@@ -138,9 +138,9 @@ class CreatingQuizController extends BaseController {
                 'question' => $question,
                 'nb_of_answers' => $nbOfAnswers,
                 'answer_A' => $correctAnswer,
-                'answer_B' => $answers[0] ?? '',
-                'answer_C' => $answers[1] ?? '',
-                'answer_D' => $answers[2] ?? ''
+                'answer_B' => $answers[1] ?? '',
+                'answer_C' => $answers[2] ?? '',
+                'answer_D' => $answers[3] ?? ''
             ]);
 
             if ($questionId) {

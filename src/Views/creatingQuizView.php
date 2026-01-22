@@ -75,7 +75,7 @@
 <script> /* ajustement des largeurs des inputs */
     let select = document.getElementById('category');
     let color = document.getElementById('color');
-    let button = document.querySelector('form button[type="submit"]');
+    let button = document.querySelector('form button[type="submit"][name="create_quiz"]');
     let input = document.querySelector('form input');
     button.style.width = input.offsetWidth - 10 + 'px';
     color.style.width = input.offsetWidth + 'px';

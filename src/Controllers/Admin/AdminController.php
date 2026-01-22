@@ -13,6 +13,7 @@ class AdminController extends AccessController {
     protected array $errors = [];
     protected string $success = '';
 
+    protected array $adminQuizzes = [];      // Pour avoir une liste des quizzes créés par l'admin
     protected array $currentReports = [];   // Pour avoir un suivi des signalements
     protected array $suspendedUsers = [];    // Pour avoir un suivi des utilisateurs suspendus
     protected array $nbOfQuizzes = [];         // Pour avoir le nombre de quizzes actuellement dans la base
@@ -100,12 +101,17 @@ class AdminController extends AccessController {
             $report['reporter_pseudo'] = isset($report['reporter_pseudo']) ? htmlspecialchars($report['reporter_pseudo']) : 'Utilisateur non connecté';
             $report['reporter_email'] = isset($report['reporter_email']) ? htmlspecialchars($report['reporter_email']) : 'Utilisateur non connecté';
         }
+
+        
+        print_r($_SESSION);
         $this->suspendedUsers = AdminModel::getSuspendedUsers();
         $this->nbOfQuizzes = AdminModel::getQuizzesDate();
         $this->nbOfPlayers = AdminModel::getPlayersDate();
+        $this->adminQuizzes = AdminModel::getAdminQuizzes($_SESSION['user_id']);  // Récupération des quizzes créés par l'admin
 
 
         // Simplification des variables pour les appels dans la vue
+        $adminQuizzes = $this->adminQuizzes;
         $reports = $this->currentReports;
         $suspendedUsers = $this->suspendedUsers;
         $nbQuizzes = $this->nbOfQuizzes;

@@ -8,6 +8,13 @@ use App\Models\BaseModel;
 
 class AdminModel extends BaseModel {
 
+    // Récupération des quizzes créés par l'administrateur
+    public static function getAdminQuizzes($id): array {
+        $sql = "SELECT * FROM quizzes WHERE user_id = $id";
+        $stmt = self::fetchAll($sql);
+        return $stmt ?: [];
+    }
+
     // Récupération des signalements
     public static function getReports(): array {
         $sql = "SELECT r.id, r.quiz_id, r.creator_id, r.reporter_id, r.title, r.comment, r.created_at,

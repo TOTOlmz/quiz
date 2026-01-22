@@ -2,7 +2,14 @@
     <h1>Page d'administration</h1>
     <?php require_once ROOT_PATH . '/src/Views/components/checks.php'; ?>
 
+    <?php // Section permettant d'de rediriger vers la page de création de quizzes ?>
+    <h3>Création de quizz</h3>
+    <div class="admin-menu">
+        <a href="./creer-un-quiz" id="create-quizz-btn" class="button">Créer un quiz</a>
+        <span id="edit-quizzes-btn" class="button">Editer un quiz</span>
+    </div>
     <?php // Section permettant d'afficher les boutons d'appel des overlays ?>
+    <h3>Gestion des utilisateurs</h3>
     <div class="admin-menu">
         <span id="players-btn" class="button">Graphique des utilisateurs</span>
         <span id="quizzes-btn" class="button">Graphique des créations</span>
@@ -14,6 +21,29 @@
 <?php // Section permettant d'afficher les overlays ?>
 
 <div class="overlay admin-overlay">
+    <?php // Section permettant d'afficher les quizzes créés par l'administrateur ?>
+    <div class="pop-up edit-quizzes-div">
+        <h3>Liste des quizzes créés</h3>
+        <?php if (!empty($adminQuizzes)): ?>
+            <div>
+                <?php foreach($adminQuizzes as $quiz): ?>
+                    <div class="quiz-card" style="border-color: <?= htmlspecialchars($quiz['color']) ?>; box-shadow: 5px 5px 0 <?= htmlspecialchars($quiz['color']) ?>, -5px -5px 0 <?= htmlspecialchars($quiz['color']) ?>;">
+                        <a href="./creer-un-quiz?id=<?= intval($quiz['id']); ?>" class="card-link">
+                            <h4><?= $quiz['name']; ?></h4>
+                            <p><?=  $quiz['description']; ?></p>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <br>
+            <span class="close-btn button">Fermer</span>
+        <?php else: ?>
+            <p>Aucun quiz créé par l'administrateur.</p>
+            <br>
+            <span class="close-btn button">Fermer</span>
+        <?php endif; ?>
+    </div>
+
     <?php // Section permettant d'afficher les joueurs suspendus ?>
     <div class="pop-up suspended-users-div">
         <span class="new-suspension button">Suspendre un joueur</span>
@@ -183,4 +213,5 @@
             }
         }
     });
+
 </script>
