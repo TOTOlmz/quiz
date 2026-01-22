@@ -1,0 +1,83 @@
+services:
+  # Service MySQL
+  mysql:
+    image: mariadb:latest
+    container_name: quiz_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: quiz
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./BDD.sql:/docker-entrypoint-initdb.d/BDD.sql
+    networks:
+      - quiz_network
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 60s
+
+  # Service phpMyAdmin
+  phpmyadmin:
+    image: arm64v8/phpmyadmin:latest
+    container_name: quiz_phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+      UPLOAD_LIMIT: 300M
+    ports:
+      - "8080:80"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - quiz_network
+
+  # Service PHP Apache
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: quiz_web
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./public_html:/var/www/html/public_html
+      - ./src:/var/www/html/src
+      - ./vendor:/var/www/html/vendor
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - quiz_network
+    environment:
+      DB_HOST: mysql
+      DB_NAME: quiz
+      DB_USER: root
+      DB_PASS: root
+      DB_PORT: 3306
+      DB_CHARSET: utf8mb4
+      DB_TIMEZONE: Europe/Paris
+      SMTP_HOST: VotreSMTP
+      SMTP_PORT: 465
+      SMTP_USER: VotreEmail
+      SMTP_PASS: VotreMDP
+      SMTP_FROM: VotreEmail
+
+# Volumes persistants
+volumes:
+  mysql_data:
+    driver: local
+
+# Réseau personnalisé
+networks:
+  quiz_network:
+    driver: bridge

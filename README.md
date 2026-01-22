@@ -24,8 +24,17 @@ Développé en PHP et JS <br>
     Le readme et une copie de l'extrait de la bdd.sql
 
 
-<h3> Prérequis </h3>
-Installer Xampp et copier coller le code (dossier quiz) directement dans le dossier htdocs
+<h3> Prérequis pour une utilisation via XAMPP</h3>
+Installer Xampp et copier coller le code (dossier quiz) directement dans le dossier htdocs de xampp
+
+commandes à executer avant de lancer le projet : 
+composer require symfony/var-dumper
+composer require symfony/mailer
+
+<h3> Prérequis pour une utilisation via DOCKER</h3>
+Ouvrir un terminal dans le dossier quiz.
+executer la commande : docker compose build
+executer la commande : docker compose up -d
 
 commandes à executer avant de lancer le projet : 
 composer require symfony/var-dumper
