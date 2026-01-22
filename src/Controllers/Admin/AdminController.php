@@ -102,8 +102,6 @@ class AdminController extends AccessController {
             $report['reporter_email'] = isset($report['reporter_email']) ? htmlspecialchars($report['reporter_email']) : 'Utilisateur non connecté';
         }
 
-        
-        print_r($_SESSION);
         $this->suspendedUsers = AdminModel::getSuspendedUsers();
         $this->nbOfQuizzes = AdminModel::getQuizzesDate();
         $this->nbOfPlayers = AdminModel::getPlayersDate();
