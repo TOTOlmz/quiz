@@ -8,14 +8,19 @@
         <a href="./creer-un-quiz" id="create-quizz-btn" class="button">Créer un quiz</a>
         <span id="edit-quizzes-btn" class="button">Editer un quiz</span>
     </div>
-    <?php // Section permettant d'afficher les boutons d'appel des overlays ?>
+    <?php // Section gérant les utilisateurs ?>
     <h3>Gestion des utilisateurs</h3>
+    <div class="admin-menu">
+        <span id="suspended-users-btn" class="button">Gestion des joueurs suspendus</span>
+        <span id="reports-btn" class="button">Gestion des signalements</span>
+    </div>
+
+    <?php // Section gérant les stats ?>
+    <h3>Statistiques</h3>
     <div class="admin-menu">
         <span id="players-btn" class="button">Graphique des utilisateurs</span>
         <span id="quizzes-btn" class="button">Graphique des créations</span>
-        <span id="suspended-users-btn" class="button">Gestion des joueurs suspendus</span>
-        <span id="reports-btn" class="button">Gestion des signalements</span>
-    </div>    
+    </div>
 </div>
 
 <?php // Section permettant d'afficher les overlays ?>
@@ -25,7 +30,7 @@
     <div class="pop-up edit-quizzes-div">
         <h3>Liste des quizzes créés</h3>
         <?php if (!empty($adminQuizzes)): ?>
-            <div>
+            <div class="edit-quizzes-area">
                 <?php foreach($adminQuizzes as $quiz): ?>
                     <div class="quiz-card" style="border-color: <?= htmlspecialchars($quiz['color']) ?>; box-shadow: 5px 5px 0 <?= htmlspecialchars($quiz['color']) ?>, -5px -5px 0 <?= htmlspecialchars($quiz['color']) ?>;">
                         <a href="./creer-un-quiz?id=<?= intval($quiz['id']); ?>" class="card-link">

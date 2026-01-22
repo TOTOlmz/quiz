@@ -13,8 +13,8 @@ Développé en PHP et JS <br>
 ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ <br>
 
 <h3> Strucutre du projet : </h3>
-
-    public_html => comporte le fichier index.php, les styles, le .htaccess ainsi que les assets <br>
+    doc => Ensemble des fichiers de documentation de l'application
+    public_html => comporte le fichier index.php, les styles, le .htaccess ainsi que les assets (images, scripts, logo...) <br>
     src (comporte le mvc) <br>
     |-- Controllers (Tous les controlleurs faisant le lien entre les vues et les modèles) <br>
     |-- models (Tous les modèles échangeant avec la base de données) <br>
